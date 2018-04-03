@@ -102,6 +102,25 @@ const styles = StyleSheet.create({
 	},
 	bigTitle:{
 		fontSize: 50
+	},
+	expenseItem: {
+		paddingTop: 15,
+		paddingBottom: 15,
+		paddingLeft: 15,
+		paddingRight: 15,
+		borderRadius: 20,
+		backgroundColor:"#5cccc7",
+		color: '#fff',
+		marginLeft:5,
+		marginRight:5,
+		marginBottom:10,
+	},
+	expenseItemWrapper:{
+		flexDirection: 'row',
+		alignSelf: 'flex-start',
+		flexWrap: 'wrap',
+		marginLeft:10,
+		marginRight:10
 	}
 
 });
