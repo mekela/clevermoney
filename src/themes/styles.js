@@ -34,16 +34,16 @@ const styles = StyleSheet.create({
 	button: {
 		borderRadius: 40,
 		backgroundColor: "#8fd67a",
-		padding: 25,
-		marginLeft: 30,
-		marginRight: 30,
+		padding: 17,
+		marginLeft: 45,
+		marginRight: 45,
 	},
 
 	buttonInside: {
 		alignSelf: 'center',
 		color: '#fff',
 		fontWeight: 'bold',
-		fontSize: 1.5 * defaultFontSize
+		fontSize: 2 * defaultFontSize
 	},
 	inputWrapper: {
 		height: 60,
