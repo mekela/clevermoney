@@ -63,5 +63,9 @@ ios
 __tests__
 yarn.lock
 index.js
+.babelrc
+.watchmanconfig
+app.json
+package.json
 
 
