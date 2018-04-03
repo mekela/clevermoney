@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 	},
 	button: {
 		borderRadius: 40,
-		backgroundColor: "#8fd67a",
+		backgroundColor: "#4de1d3",
 		padding: 17,
 		marginLeft: 45,
 		marginRight: 45,
@@ -51,12 +51,16 @@ const styles = StyleSheet.create({
 		fontSize: 2 * defaultFontSize
 	},
 	inputWrapper: {
-		height: 60,
-		backgroundColor: "#686b7e",
+		paddingLeft:10,
+		paddingRight:10,
+		paddingTop:18,
+		paddingBottom:18,
+		borderWidth:1.5,
+		borderColor:'#c4c5c6',
 		marginLeft: 30,
 		marginRight: 30,
-		marginBottom: 1,
-		flexDirection: 'row'
+		marginBottom: 20,
+		borderRadius: 10,
 	},
 	inputWrapperTop: {
 		borderTopLeftRadius: 15,
