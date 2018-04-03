@@ -1,6 +1,7 @@
 import React from 'react';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import module_style from "../../scenes/wizardScene/styles";
+import {Text, View} from "react-native";
 
 const slides = [
 	{
@@ -33,11 +34,27 @@ export default class App extends React.Component {
 	_onDone = () => {
 		// User finished the introduction. Show "real" app
 	}
+	_renderNextButton = () => {
+		return (
+			<View>
+				<Text>Далі</Text>
+			</View>
+		);
+	}
+	_renderDoneButton = () => {
+		return (
+			<View>
+				<Text>Закінчити</Text>
+			</View>
+		);
+	}
 	render() {
 		return (
 			<AppIntroSlider
 				slides={slides}
 				onDone={this._onDone}
+				renderDoneButton={this._renderDoneButton}
+				renderNextButton={this._renderNextButton}
 			/>
 		);
 	}
