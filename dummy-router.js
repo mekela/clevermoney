@@ -1,5 +1,3 @@
 import React from 'react';
-
-import App from './dummy-router';
-
+import App from './src/scenes/initialScreen';
 export default App;
