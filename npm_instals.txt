@@ -1,1 +1,6 @@
 npm i react-native-app-intro-slider --save
+
+npm install react-native-pathjs-charts --save
+react-native link react-native-svg
+
+npm i react-native-select-input-ios --save

@@ -7,12 +7,17 @@ const defaultFontSize = 10;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: "#5a5c6d"
 	},
 	top: {
 		height: 200,
 		alignItems: 'center',
 		justifyContent: 'center'
+	},
+	topInner: {
+		paddingTop: 32,
+		paddingBottom: 20,
+		// alignItems: 'center',
+		// justifyContent: 'center'
 	},
 	navigation: {
 		height: 100,
@@ -91,6 +96,9 @@ const styles = StyleSheet.create({
 		padding:10,
 		backgroundColor:"#ddd"
 	},
+	bigTitle:{
+		fontSize: 50
+	}
 
 });
 
