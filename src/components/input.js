@@ -6,7 +6,7 @@ import styles from "../themes/styles";
 const Input = (props) => (
 
     <View style={[styles.inputWrapper, props.additionalStyle]}>
-      <TextInput placeholder={ props.placeholder } placeholderTextColor="#aaa"/>
+      <TextInput placeholder={ props.placeholder } placeholderTextColor="#aaa" textInputProps={{underlineColorAndroid:'white'}}  />
     </View>
   )
 

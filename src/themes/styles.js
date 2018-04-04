@@ -42,8 +42,12 @@ const styles = StyleSheet.create({
 		padding: 17,
 		marginLeft: 45,
 		marginRight: 45,
+		shadowColor: '#000',
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 0.2,
+		marginBottom: 10,
+		elevation: 2, 
 	},
-
 	buttonInside: {
 		alignSelf: 'center',
 		color: '#fff',
@@ -53,14 +57,14 @@ const styles = StyleSheet.create({
 	inputWrapper: {
 		paddingLeft:10,
 		paddingRight:10,
-		paddingTop:18,
-		paddingBottom:18,
+		paddingTop:0,
+		paddingBottom:0,
 		borderWidth:1.5,
-		borderColor:'#c4c5c6',
+		borderColor:'#ececec',
 		marginLeft: 30,
 		marginRight: 30,
-		marginBottom: 20,
-		borderRadius: 10,
+		marginBottom: 35,
+		borderRadius: 20,
 	},
 	inputWrapperTop: {
 		borderTopLeftRadius: 15,

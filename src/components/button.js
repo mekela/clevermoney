@@ -5,6 +5,7 @@ import styles from "../themes/styles";
 
 const Button = (props)=>(
   <TouchableOpacity
+      elevation={5}
     style={ styles.button }
   >
     <Text style={ styles.buttonInside }> { props.text } </Text>
