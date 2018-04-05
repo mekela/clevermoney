@@ -7,6 +7,9 @@ const defaultFontSize = 10;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		height: '100%',
+		alignItems: 'center',
+		justifyContent: 'center'
 	},
 	top: {
 		height: 200,
@@ -89,16 +92,19 @@ const styles = StyleSheet.create({
 	},
 	header:{
 		paddingTop: 22,
+		paddingBottom: 12,
 		justifyContent:'center',
 		alignItems:'center',
-		height: 60,
+		//height: 60,
 		shadowColor: "#333",
 		shadowOffset: {width: 0,height: 3},
 		shadowOpacity: 0.6,
 		backgroundColor:"#fff"
 	},
 	headerText:{
-		fontSize:20
+		fontSize:25,
+		color: '#4de1d3',
+		fontWeight: 'bold'
 	},
 	nav:{
 		borderTopWidth:1,
@@ -150,6 +156,32 @@ const styles = StyleSheet.create({
 	},
 	hashtagActiveText:{
 		color: '#fff',
+	},
+	homeImage:{
+		width: 114,
+		height: 114,
+		shadowOpacity: 1.0,
+		borderRadius: 57
+	},
+	homeImageWrap:{
+		marginBottom: 15,
+	},
+	homeImageText:{
+		fontSize:18,
+		color: '#4de1d3',
+		fontWeight: 'bold'
+	},
+	homeBox: {
+		width: width/2 - 30,
+		marginLeft: 7,
+		marginRight: 7,
+		marginBottom: 25,
+		backgroundColor: '#f1f1f1', 
+		alignItems: 'center',
+		justifyContent: 'center',
+		paddingTop: 20,
+		paddingBottom: 20,
+		borderRadius: 9,
 	}
 
 });
