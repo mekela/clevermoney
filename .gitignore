@@ -52,5 +52,16 @@ buck-out/
 */fastlane/Preview.html
 */fastlane/screenshots
 
-# Bundle artifact
-*.jsbundle
+.babelrc
+.watchmanconfig
+app.json
+package.json
+.buckconfig
+.flowconfig
+android
+ios
+__tests__
+yarn.lock
+index.js
+
+
