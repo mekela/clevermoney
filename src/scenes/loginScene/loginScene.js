@@ -20,7 +20,7 @@ class App extends Component{
 
 					<Input placeholder="Email"  additionalStyle={ style_module.inputForm } />
 
-					<Input placeholder="Password"  additionalStyle={ style_module.inputForm } />
+					<Input placeholder="Password"  additionalStyle={ style_module.inputForm } /> 
 
 				</ScrollView>
 				<View style= { styles.navigation } >

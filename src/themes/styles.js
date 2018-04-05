@@ -65,6 +65,8 @@ const styles = StyleSheet.create({
 		marginRight: 30,
 		marginBottom: 35,
 		borderRadius: 20,
+		alignSelf: 'stretch',
+		width: width - 60,
 	},
 	inputWrapperTop: {
 		borderTopLeftRadius: 15,
@@ -125,6 +127,29 @@ const styles = StyleSheet.create({
 		flexWrap: 'wrap',
 		marginLeft:10,
 		marginRight:10
+	},
+	hashtag:{
+		borderRadius: 15,
+		borderWidth:1,
+		borderColor: "#818181",
+		height: 30,
+		marginLeft: 8,
+		marginRight: 8,
+		marginBottom: 20,
+		paddingLeft: 15,
+		paddingRight: 15,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	hashtagActive:{
+		backgroundColor: '#61cec9',
+		borderColor: "#61cec9",
+	},
+	hashtagInside:{
+		color: '#818181',
+	},
+	hashtagActiveText:{
+		color: '#fff',
 	}
 
 });
