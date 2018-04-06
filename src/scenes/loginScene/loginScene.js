@@ -1,5 +1,6 @@
 import { View, Text, Image, ScrollView, ImageBackground } from 'react-native';
 import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux';
 
 import styles from "../../themes/styles";
 import Input from "../../components/input";
@@ -24,7 +25,7 @@ class App extends Component{
 
 				</ScrollView>
 				<View style= { styles.navigation } >
-					<Button text="LOGIN"/>
+					<Button text="LOGIN" goToScene = "wizardScene" />
 				</View>
 			</View>
 		);
