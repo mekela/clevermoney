@@ -1,5 +1,5 @@
 import React from 'react';
 
-import App from './dummy-router';
+import App from './src/router';
 
-export default App; 
+export default App;
