@@ -1,7 +1,9 @@
 import React from 'react';
 import AppIntroSlider from 'react-native-app-intro-slider';
+import { Actions } from 'react-native-router-flux';
 import module_style from "../../scenes/wizardScene/styles";
 import {Text, View} from "react-native";
+//import Button from "../../components/button";
 
 const slides = [
 	{
@@ -44,7 +46,7 @@ export default class App extends React.Component {
 	_renderDoneButton = () => {
 		return (
 			<View>
-				<Text>Закінчити</Text>
+				<Text onPress={Actions.homepageScene} >Закінчити</Text>
 			</View>
 		);
 	}
