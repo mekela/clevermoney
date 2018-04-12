@@ -5,6 +5,7 @@ import styles from "../../themes/styles";
 import style_module from "./styles";
 import Input from "../../components/input";
 import Button from "../../components/button";
+import Nav from "../../components/nav";
 
 export default class App extends React.Component {
 	render(){
@@ -27,6 +28,7 @@ export default class App extends React.Component {
 				<View style= { styles.navigation } >
 					<Button text="Оновити"/>
 				</View>
+				<Nav/>
 			</View>
 		);
 	}

@@ -6,7 +6,8 @@ const MARGIN_LARGE = 16;
 
 const module_style = StyleSheet.create({
 	containerBackground: {
-		backgroundColor: '#53cac4'
+		backgroundColor: '#53cac4',
+		width: '100%',
 	},
 	bigTitle:{
 		textAlign:'center',
@@ -23,15 +24,21 @@ const module_style = StyleSheet.create({
 	},
 	selectInput: {
 		flexDirection:            'row',
-		height:                   36,
-		padding:                  MARGIN_SMALL,
-		marginTop:                MARGIN_LARGE,
+		//height:                   36,
+		//padding:                  MARGIN_SMALL,
+		//marginTop:                MARGIN_LARGE,
 		//color: '#fff',
 		alignSelf: 'flex-end',
-		marginRight: 45,
+		marginRight: 5,
 	},
 	selectInputSmall: {
 		//width:                    SCREEN_WIDTH * 0.5 - (MARGIN_LARGE * 2),
+
+	},
+	selectWrapper:{
+		flexDirection: 'row',
+		justifyContent: 'flex-end',
+		alignItems: 'center',
 	}
 });
 

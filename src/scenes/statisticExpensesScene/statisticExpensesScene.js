@@ -1,10 +1,12 @@
-import {View, Text, ScrollView, Picker} from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import React, { Component } from 'react';
 import { Bar } from 'react-native-pathjs-charts';
+import Icon from 'react-native-vector-icons/dist/EvilIcons';
 import SelectInput from 'react-native-select-input-ios';
 
 import styles from "../../themes/styles";
 import style_module from "./styles";
+import Nav from "../../components/nav";
 
 class App extends Component{
 	constructor(props) {
@@ -111,8 +113,8 @@ class App extends Component{
 		}
 
 		return (
-			<View style = { [styles.container, style_module.containerBackground] }>
-				<View style= { [styles.topInner] } >
+			<View style = { [styles.container] }>
+				<View style={[style_module.containerBackground, style_module.selectWrapper]}>
 					<SelectInput
 						value={state.valueSmall0}
 						options={this.getPickerOptions()}
@@ -120,10 +122,11 @@ class App extends Component{
 						onSubmitEditing={this.onSubmitEditingSmall0.bind(this)}
 						style={[style_module.selectInput, style_module.selectInputSmall]}
 					/>
+					<Icon name='chevron-down' size={25} color="#3c3c3c"></Icon>
 				</View>
 
-				<ScrollView style= { styles.content } >
-					<View style={styles.container}>
+				<View style= { [styles.content, style_module.containerBackground] } >
+					<View style={[styles.container, style_module.containerBackground]}>
 						<Bar data={data} options={options} accessorKey='v'/>
 					</View>
 					<Text style={ [styles.bigTitle, style_module.bigTitle] }> Квітень, 1 </Text>
@@ -137,9 +140,9 @@ class App extends Component{
 							marginRight: 45,
 						}}
 					/>
-					<Text style={ style_module.Text }> Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab ad beatae,  </Text>
 
-				</ScrollView>
+				</View>
+				<Nav/>
 			</View>
 		);
 	}

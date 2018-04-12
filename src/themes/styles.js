@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
 		flex: 1,
 		height: '100%',
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		backgroundColor:'#fff'
 	},
 	top: {
 		height: 200,
@@ -96,6 +97,7 @@ const styles = StyleSheet.create({
 		justifyContent:'center',
 		alignItems:'center',
 		//height: 60,
+		width: '100%',
 		shadowColor: "#333",
 		shadowOffset: {width: 0,height: 3},
 		shadowOpacity: 0.6,
@@ -182,6 +184,24 @@ const styles = StyleSheet.create({
 		paddingTop: 20,
 		paddingBottom: 20,
 		borderRadius: 9,
+	},
+	navBar:{
+		display: 'flex',
+		height: 60,
+		width: '100%',
+		backgroundColor: '#fff',
+		borderTopWidth: 0.5,
+		borderColor: "#e5e5e5",
+		flexDirection: 'row',
+		justifyContent: 'space-around',
+	},
+	tabItem: {
+		alignItems: 'center',
+		justifyContent: 'center'
+	},
+	tabTitle: {
+		fontSize: 11,
+		color: '#3c3c3c'
 	}
 
 });

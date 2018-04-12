@@ -14,13 +14,13 @@ export default class router extends Component {
 		return (
 			<Router >
 				<Scene key="root">
-					<Scene key="loginScene" component={loginScene} title="loginScene" initial hideNavBar = {true}/>
-					<Scene key="wizardScene" component={wizardScene} title="wizardScene" hideNavBar = {true}/>
-					<Scene key="homepageScene" component={homepageScene} title="homepageScene" hideNavBar = {true}/>
-					<Scene key="addExpensesScene" component={addExpensesScene} title="addExpensesScene" hideNavBar = {false}/>
-					<Scene key="categoryExpensesScene" component={categoryExpensesScene} title="categoryExpensesScene" hideNavBar = {false}/>
-					<Scene key="profileScene" component={profileScene} title="profileScene" hideNavBar = {false}/>
-					<Scene key="statisticExpensesScene" component={statisticExpensesScene} title="statisticExpensesScene" hideNavBar = {false}/>
+					<Scene key="loginScene" component={loginScene} title="Авторизація" hideNavBar = {true}/>
+					<Scene key="wizardScene" component={wizardScene} title="Ознайомлення" hideNavBar = {true}/>
+					<Scene key="homepageScene" component={homepageScene} title="Головна" hideNavBar = {true}/>
+					<Scene key="addExpensesScene" component={addExpensesScene} title="Додати витрати" hideNavBar = {false}/>
+					<Scene key="categoryExpensesScene" component={categoryExpensesScene} title="Категорії витрат" hideNavBar = {false}/>
+					<Scene key="profileScene" component={profileScene} title="Профіль" hideNavBar = {false}/>
+					<Scene key="statisticExpensesScene" component={statisticExpensesScene} initial title="Статистика" hideNavBar = {false}/>
 				</Scene>
 			</Router>
 		)

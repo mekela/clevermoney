@@ -6,6 +6,7 @@ import style_module from "./styles";
 import ExpenseItem from "../../components/expenseItem";
 import Button from "../../components/button";
 import Input from "../../components/input";
+import Nav from "../../components/nav";
 
 export default class App extends React.Component {
 	render(){
@@ -28,7 +29,7 @@ export default class App extends React.Component {
 					<Input value="Категорія 1" />
 
 				</ScrollView>
-
+				<Nav/>
 			</View>
 		);
 	}
