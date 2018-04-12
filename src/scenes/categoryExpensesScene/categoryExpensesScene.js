@@ -1,14 +1,38 @@
-import React from 'react';
-import { ScrollView, Text, View} from 'react-native';
+import React, {Component} from 'react';
+import {ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 import styles from "../../themes/styles";
 import style_module from "./styles";
 import ExpenseItem from "../../components/expenseItem";
-import Button from "../../components/button";
 import Input from "../../components/input";
 import Nav from "../../components/nav";
+import {getCafes} from "../../actions/cafeActions";
 
-export default class App extends React.Component {
+class categoryExpanseScene extends Component {
+
+	constructor(){
+		super();
+		this.state = {cafes:[]}
+	}
+
+	componentWillMount(){
+		getCafes()
+			.then(cafes =>{
+				this.setState({cafes})
+			}).catch(error =>{
+				console.log(error);
+		})
+	}
+
+	renderCafes(){
+		return this.state.cafes.map(cafe => (
+			<TouchableOpacity key={cafe.id}>
+				<Text>{cafe.name}</Text>
+				<Text>{cafe.description}</Text>
+			</TouchableOpacity>
+		))
+	}
+
 	render(){
 		return (
 			<View style = { styles.container }>
@@ -19,6 +43,7 @@ export default class App extends React.Component {
 				</View>
 
 				<ScrollView style= { styles.content } >
+					{this.renderCafes()}
 					<View style= { styles.expenseItemWrapper } >
 						<ExpenseItem>Категорія 1</ExpenseItem>
 						<ExpenseItem>Категорія 2</ExpenseItem>
@@ -34,3 +59,5 @@ export default class App extends React.Component {
 		);
 	}
 }
+
+export default categoryExpanseScene;

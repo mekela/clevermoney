@@ -6,7 +6,6 @@ import Hashtag from "../../components/hashtag";
 import Input from "../../components/input";
 import Button from "../../components/button";
 import style_module from "./styles";
-import Nav from "../../components/nav";
 
 export default class App extends React.Component {
 	render() {
@@ -54,7 +53,6 @@ export default class App extends React.Component {
 				<View style= { styles.navigation } >
 					<Button text="Додати витрати"/>
 				</View>
-				<Nav/>
 			</View>
 		);
 	}
