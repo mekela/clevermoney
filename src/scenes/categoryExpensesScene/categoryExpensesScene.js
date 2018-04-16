@@ -7,21 +7,26 @@ import ExpenseItem from "../../components/expenseItem";
 import Input from "../../components/input";
 import Nav from "../../components/nav";
 import {getCafes} from "../../actions/cafeActions";
+import Loader from "../../components/loader";
 
 class categoryExpanseScene extends Component {
 
 	constructor(){
 		super();
-		this.state = {cafes:[]}
+		this.state = {cafes:[], loading: false}
 	}
 
 	componentWillMount(){
+
+		this.setState({loading: true});
 		getCafes()
 			.then(cafes =>{
 				this.setState({cafes})
 			}).catch(error =>{
 				console.log(error);
-		})
+			}).finally((val) =>{
+				this.setState({loading: false});
+			})
 	}
 
 	renderCafes(){
@@ -44,6 +49,7 @@ class categoryExpanseScene extends Component {
 
 				<ScrollView style= { styles.content } >
 					{this.renderCafes()}
+					{this.state.loading?<Loader/>:null}
 					<View style= { styles.expenseItemWrapper } >
 						<ExpenseItem>Категорія 1</ExpenseItem>
 						<ExpenseItem>Категорія 2</ExpenseItem>
