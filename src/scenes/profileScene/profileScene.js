@@ -34,8 +34,8 @@ export default class App extends React.Component {
 						<Text style={style_module.list_link}>Повідомити про помилку</Text>
 						<Icon style={style_module.list_icon} name="chevron-right" size={30} color="#343434"></Icon>
 					</View>
-					<View style={style_module.form_title_wrapper}>
-						<Text style={style_module.form_title}>Замінити пароль</Text>
+					<View style={styles.subtitle_wrapper}>
+						<Text style={styles.subtitle}>Замінити пароль</Text>
 					</View>
 					<View style={style_module.form_label_wrapper}>
 						<Text>Старий пароль</Text>

@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
 		borderRadius: 40,
 		backgroundColor: "#4de1d3",
 		padding: 17,
-		marginLeft: 45,
-		marginRight: 45,
+		marginLeft: 30,
+		marginRight: 30,
 		shadowColor: '#000',
 		shadowOffset: { width: 0, height: 2 },
 		shadowOpacity: 0.2,
@@ -118,23 +118,29 @@ const styles = StyleSheet.create({
 		fontSize: 50
 	},
 	expenseItem: {
-		paddingTop: 15,
-		paddingBottom: 15,
-		paddingLeft: 15,
-		paddingRight: 15,
-		borderRadius: 20,
+		paddingTop: 8,
+		paddingBottom: 8,
+		paddingLeft: 10,
+		paddingRight: 5,
 		backgroundColor:"#5cccc7",
-		color: '#fff',
 		marginLeft:5,
 		marginRight:5,
 		marginBottom:10,
+		borderRadius: 20,
+		flexDirection: 'row',
+		justifyContent: 'space-around',
+		alignItems: 'center'
+	},
+	expenseItemText: {
+		color: '#fff',
+		marginRight: 10
 	},
 	expenseItemWrapper:{
 		flexDirection: 'row',
 		alignSelf: 'flex-start',
 		flexWrap: 'wrap',
 		marginLeft:10,
-		marginRight:10
+		marginRight:10,
 	},
 	hashtag:{
 		borderRadius: 15,
@@ -202,7 +208,16 @@ const styles = StyleSheet.create({
 	tabTitle: {
 		fontSize: 11,
 		color: '#3c3c3c'
-	}
+	},
+	subtitle_wrapper:{
+		paddingTop: 26,
+		paddingBottom: 20,
+		paddingHorizontal: 30,
+	},
+	subtitle:{
+		fontSize:18,
+		fontWeight:'bold'
+	},
 
 });
 

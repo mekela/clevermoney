@@ -25,15 +25,6 @@ const module_style = StyleSheet.create({
 	list_link:{
 		fontSize:18
 	},
-	form_title_wrapper:{
-		paddingTop: 26,
-		paddingBottom: 20,
-		paddingHorizontal: 30,
-	},
-	form_title:{
-		fontSize:18,
-		fontWeight:'bold'
-	},
 	list_icon:{
 
 	},

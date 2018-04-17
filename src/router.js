@@ -18,8 +18,8 @@ export default class router extends Component {
 					<Scene key="wizardScene" component={wizardScene} title="Ознайомлення" hideNavBar = {true}/>
 					<Scene key="homepageScene" component={homepageScene} title="Головна" hideNavBar = {true}/>
 					<Scene key="addExpensesScene" component={addExpensesScene} title="Додати витрати" hideNavBar = {false}/>
-					<Scene key="categoryExpensesScene" component={categoryExpensesScene} title="Категорії витрат" hideNavBar = {false}/>
-					<Scene key="profileScene" component={profileScene} title="Профіль" initial hideNavBar = {false}/>
+					<Scene key="categoryExpensesScene" component={categoryExpensesScene} initial title="Категорії витрат" hideNavBar = {false}/>
+					<Scene key="profileScene" component={profileScene} title="Профіль" hideNavBar = {false}/>
 					<Scene key="statisticExpensesScene" component={statisticExpensesScene} title="Статистика" hideNavBar = {false}/>
 				</Scene>
 			</Router>

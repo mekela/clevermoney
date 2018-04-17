@@ -8,6 +8,7 @@ import Input from "../../components/input";
 import Nav from "../../components/nav";
 import {getCafes} from "../../actions/cafeActions";
 import Loader from "../../components/loader";
+import Button from "../../components/button";
 
 class categoryExpanseScene extends Component {
 
@@ -41,24 +42,22 @@ class categoryExpanseScene extends Component {
 	render(){
 		return (
 			<View style = { styles.container }>
-				<View style= { styles.topInner } >
-					<Text style={ [styles.companyName, style_module.TopTitle] } >
-						Категорії витрат
-					</Text>
-				</View>
-
-				<ScrollView style= { styles.content } >
-					{this.renderCafes()}
-					{this.state.loading?<Loader/>:null}
+				<ScrollView style= { [styles.content, styles.topInner] } >
+					{/*{this.renderCafes()}*/}
+					{/*{this.state.loading?<Loader/>:null}*/}
 					<View style= { styles.expenseItemWrapper } >
 						<ExpenseItem>Категорія 1</ExpenseItem>
 						<ExpenseItem>Категорія 2</ExpenseItem>
 						<ExpenseItem>Категорія 3</ExpenseItem>
 						<ExpenseItem>Категорія 4</ExpenseItem>
 					</View>
-					<Text>Оновити</Text>
+					<View style={styles.subtitle_wrapper}>
+						<Text style={styles.subtitle}>Нова категорія</Text>
+					</View>
 					<Input value="Категорія 1" />
-
+					<View style= { styles.navigation } >
+						<Button text="Додати"/>
+					</View>
 				</ScrollView>
 				<Nav/>
 			</View>
