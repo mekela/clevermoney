@@ -205,8 +205,12 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
+
 	tabTitle: {
 		fontSize: 11,
+		color: '#b7b7b7'
+	},
+	tabTitleActive:{
 		color: '#3c3c3c'
 	},
 	subtitle_wrapper:{

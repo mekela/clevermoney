@@ -1,5 +1,6 @@
 import React from 'react';
 import {Image, ScrollView, Text, View} from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import styles from "../../themes/styles";
 import style_module from "./styles";
@@ -55,6 +56,7 @@ export default class App extends React.Component {
 					<View style= { styles.navigation } >
 						<Button text="Оновити"/>
 					</View>
+					<Button text="Вийти" click={Actions.loginScene}></Button>
 				</ScrollView>
 
 				<Nav/>

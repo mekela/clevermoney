@@ -60,4 +60,8 @@ export default class App extends React.Component {
 			/>
 		);
 	}
+
+	// export const checkAuth = () =>{
+	//
+	// }
 }

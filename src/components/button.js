@@ -1,23 +1,15 @@
 import { TouchableOpacity, Text} from "react-native";
-import React, { Component } from 'react';
+import React from 'react';
 import styles from "../themes/styles";
-import {Actions} from "react-native-router-flux";
 
-class Button extends Component {
-    buttonClick(){
-	    Actions[this.props.goToScene].call();
-    }
-	render() {
-		return (
-			<TouchableOpacity
-				elevation={5}
-				style={ styles.button }
-				onPress={ this.buttonClick.bind(this)}
-			>
-				<Text style={ styles.buttonInside }> { this.props.text } </Text>
-			</TouchableOpacity>
-        )
-	}
-}
+const Button = (props)=>(
+	<TouchableOpacity
+		elevation={5}
+		onPress={ props.click }
+		style={ styles.button }
+	>
+		<Text style={ styles.buttonInside }> { props.text } </Text>
+	</TouchableOpacity>
+);
 
 export default Button;

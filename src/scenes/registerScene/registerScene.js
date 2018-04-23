@@ -1,65 +1,64 @@
 import {View, Text, Image, ScrollView, ImageBackground, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
+import Icon from "react-native-vector-icons/EvilIcons";
 
 import styles from "../../themes/styles";
 import Input from "../../components/input";
 import Button from "../../components/button";
 import style_module from "./styles";
-import Icon from "react-native-vector-icons/EvilIcons";
+import {signUp} from "../../actions"
 import Loader from "../../components/loader";
-import {signIn} from "../../actions"
 
 class App extends Component{
 	constructor(){
 		super();
 		this.state = {
-			email:'test@test.ua',
-			password:'123123123',
+			name:'',
+			email:'',
+			password:'',
 		}
 	}
-	loginButtonPress() {
+	signUpButtonPress() {
 		this.setState({loading: true});
 
-		signIn(this.state)
+		signUp(this.state)
 			.then(Actions.wizardScene)
-			.catch(error=>{alert(error)})
+			.catch(error => {
+				alert(error)
+			})
 			.finally(() => {
 				this.setState({loading: false})
 			});
 	}
+
 	renderForm() {
 		return (
 			<View>
-				{/*<View style={styles.top}>*/}
-					{/*<Image style={styles.logo}*/}
-					       {/*source={require('../themes/logo.png')}*/}
-					{/*/>*/}
-					{/*<Text style={styles.companyName}>*/}
-						{/*Awesome company*/}
-					{/*</Text>*/}
-				{/*</View>*/}
+				<Input
+					placeholder="Name"
+					onChangeText={(name) => this.setState({name})}
+					value={this.state.name}
+					additionalStyle={ style_module.inputForm } />
 				<Input
 					placeholder="Email"
-					additionalStyle={ style_module.inputForm }
 					onChangeText={(email) => this.setState({email})}
 					value={this.state.email}
-					keyboardType="email-address"
-				/>
-
+					additionalStyle={ style_module.inputForm } />
 				<Input
 					placeholder="Password"
-					additionalStyle={ style_module.inputForm }
 					onChangeText={(password) => this.setState({password})}
 					value={this.state.password}
-				/>
-				<Button text="Увійти" click={this.loginButtonPress.bind(this)} />
+					additionalStyle={ style_module.inputForm } />
+				<Button text="Зареєструватись" click = {this.signUpButtonPress.bind(this)} />
 			</View>
 		)
 	}
+
+
 	render(){
 		return (
-			<View style = { styles.container }>
+			<KeyboardAvoidingView behavior="padding" style={styles.container}>
 				<ImageBackground source={require('../../../assets/bgLogin.jpg')} style= { style_module.bgLogin } >
 					<View style= { style_module.loginImageWrap } >
 						<Image source={{uri: 'https://facebook.github.io/react/logo-og.png'}}
@@ -68,25 +67,21 @@ class App extends Component{
 				</ImageBackground>
 				<ScrollView style= { style_module.loginForm } >
 					{this.state.loading ? <Loader/> : this.renderForm()}
-
-
 				</ScrollView>
 				<View style={styles.navBar}>
 					<TouchableOpacity style={styles.tabItem} onPress={Actions.loginScene}>
-						<Icon name='arrow-right' size={35} color="#3c3c3c"></Icon>
-						<Text style={[styles.tabTitle, styles.tabTitleActive]}>Увійти</Text>
+						<Icon name='arrow-right' size={35} color="#b7b7b7"></Icon>
+						<Text style={styles.tabTitle}>Увійти</Text>
 					</TouchableOpacity>
 					<TouchableOpacity style={styles.tabItem} onPress={Actions.registerScene} >
-						<Icon name='lock' size={35} color="#b7b7b7"></Icon>
-						<Text style={styles.tabTitle}>Зареєструватися</Text>
+						<Icon name='lock' size={35} color="#3c3c3c"></Icon>
+						<Text style={[styles.tabTitle, styles.tabTitleActive]}>Зареєструватися</Text>
 					</TouchableOpacity>
 				</View>
 				{/*<View style= { styles.navigation } >*/}
-					{/*<Button text="LOGIN" goToScene = "wizardScene" />*/}
-					{/*<Text>or</Text>*/}
-					{/*<Button text="Register" goToScene = "registerScene" />*/}
+					{/*<Button text="Register" goToScene = "wizardScene" onClick = "createUser(this.state.email, this.state.password)" />*/}
 				{/*</View>*/}
-			</View>
+			</KeyboardAvoidingView>
 		);
 	}
 }
