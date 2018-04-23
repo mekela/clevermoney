@@ -1,6 +1,7 @@
 import { View, Text, Image, ScrollView, ImageBackground } from 'react-native';
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
+import Icon from "react-native-vector-icons/EvilIcons";
 
 import styles from "../../themes/styles";
 import Input from "../../components/input";
@@ -11,21 +12,29 @@ class App extends Component{
 	render(){
 		return (
 			<View style = { styles.container }>
+				<ScrollView style= { style_module.loginForm } >
 				<ImageBackground source={require('../../../assets/bgLogin.jpg')} style= { style_module.bgLogin } >
 					<View style= { style_module.loginImageWrap } >
-						<Image source={{uri: 'https://facebook.github.io/react/logo-og.png'}}
+						<Image source={require('../../../assets/clover.png')}
 							   style= { style_module.loginImage }  /> 
 					</View>
 				</ImageBackground>
-				<ScrollView style= { style_module.loginForm } >
 
+					<View> 
 					<Input placeholder="Email"  additionalStyle={ style_module.inputForm } />
-
-					<Input placeholder="Password"  additionalStyle={ style_module.inputForm } /> 
-
+					<Input placeholder="Пароль"  additionalStyle={ style_module.inputForm } />
+					<Button text="Увійти" goToScene = "wizardScene" />
+					</View>
 				</ScrollView>
 				<View style= { styles.navigation } >
-					<Button text="LOGIN" goToScene = "wizardScene" />
+					<Text>
+						Або увійти через
+					</Text>
+					<View  style= { style_module.loginIcons } >
+						<Icon name='sc-facebook' size={40} color="#4de1d3"/>
+						<Icon name='sc-twitter' size={40} color="#4de1d3"/>
+						<Icon name='sc-google-plus' size={40} color="#4de1d3"/>
+					</View>
 				</View>
 			</View>
 		);

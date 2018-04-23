@@ -4,7 +4,8 @@ const module_style = StyleSheet.create({
 	bgLogin:{
 		paddingTop:13,
 		paddingBottom: 13,
-		height: 300, 
+		height: 300,
+		width: '100%',
 		justifyContent: 'flex-end',
 		alignItems: 'center'
 	},
@@ -22,10 +23,15 @@ const module_style = StyleSheet.create({
 		borderRadius: 67
 	},
 	loginForm:{
-		paddingTop:23, 
+		//paddingTop:23,
+		width: '100%',
+	},
+	loginIcons:{
+		flexDirection: 'row',
+		marginTop: 20,
 	},
 	inputForm:{
-		//height: 60
+		//width: '100%',
 	}
 });
 
