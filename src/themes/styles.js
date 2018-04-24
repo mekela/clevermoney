@@ -4,6 +4,15 @@ var {height, width} = Dimensions.get('window');
 
 const defaultFontSize = 10;
 
+export const generalStyle = StyleSheet.create({
+	loading:{
+		marginTop:20,
+		alignSelf:'center',
+		fontSize:18,
+		color:"green"
+	}
+});
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
@@ -198,6 +207,13 @@ const styles = StyleSheet.create({
 	tabItem: {
 		alignItems: 'center',
 		justifyContent: 'center'
+	},
+	signUpLink:{
+		alignSelf: 'center',
+		color: '#3498db',
+		fontSize: 18,
+		marginTop: 0,
+		marginBottom: 30,
 	},
 	tabTitle: {
 		fontSize: 11,
