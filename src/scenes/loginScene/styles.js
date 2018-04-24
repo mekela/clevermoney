@@ -31,7 +31,7 @@ const module_style = StyleSheet.create({
 		marginTop: 20,
 	},
 	inputForm:{
-		//width: '100%',
+		width: '100%' - 60,
 	}
 });
 

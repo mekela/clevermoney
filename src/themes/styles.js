@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
 		marginBottom: 35,
 		borderRadius: 20,
 		alignSelf: 'stretch',
-		width: '100%' - 60, 
+		width: width - 60,
 	},
 	inputWrapperTop: {
 		borderTopLeftRadius: 15,

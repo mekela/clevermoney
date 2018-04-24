@@ -3,10 +3,11 @@ import {StyleSheet} from "react-native";
 const module_style = StyleSheet.create({
 	addExpensesContainer:{
 		paddingTop:20,
-		paddingBottom: 20,
+		paddingBottom: 0, 
 		flex: 1,
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		backgroundColor: 'white'
 	},
 	addExpensesTitle:{
 		fontWeight: 'bold',
@@ -28,6 +29,18 @@ const module_style = StyleSheet.create({
 	expenseForm:{
 		paddingBottom:30,
 		paddingTop:30, 
+	},
+	categoryLine:{
+		flexDirection: 'row',
+		justifyContent: 'space-between'
+	},
+	formLabel:{
+		paddingLeft: 30,
+		paddingBottom: 10,
+		fontSize: 20,
+	},
+	formPlus:{
+		paddingRight: 30,
 	}
 });
 
