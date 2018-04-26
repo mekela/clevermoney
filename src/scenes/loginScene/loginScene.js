@@ -5,7 +5,6 @@ import Icon from "react-native-vector-icons/EvilIcons";
 import {signIn} from "../../actions";
 
 import styles from "../../themes/styles";
-//import ImagePicker from 'react-native-image-picker'; 
 import Input from "../../components/input";
 import Button from "../../components/button";
 import Loader from "../../components/loader";
@@ -31,8 +30,6 @@ class App extends Component{
 				this.setState({loading: false})
 			});
 	}
-	
-
 
 	renderForm() {
 		return ( 
