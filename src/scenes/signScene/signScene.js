@@ -2,7 +2,7 @@ import { View, Text, Image, ScrollView, ImageBackground, KeyboardAvoidingView, T
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import Icon from "react-native-vector-icons/EvilIcons";
-import {signIn} from "../../actions";
+import {signUp} from "../../actions";
 
 import styles from "../../themes/styles";
 import Input from "../../components/input";
@@ -14,6 +14,7 @@ class App extends Component{
 	constructor() {
 		super();
 		this.state = {
+			name: '',
 			email: '',
 			password: '',
 			loading: false,
@@ -23,17 +24,23 @@ class App extends Component{
 	loginButtonPress() {
 		this.setState({loading: true});
 
-		signIn(this.state)
+		signUp(this.state)
 			.then(Actions.list)
-			.catch(error=>{alert(error)})
+			.catch(error => {
+				alert(error)
+			})
 			.finally(() => {
 				this.setState({loading: false})
 			});
 	}
 
 	renderForm() {
-		return ( 
+		return (
 			<View>
+				<Input onChangeText={(name) => this.setState({name})}
+					   value={this.state.name}
+					   placeholder="Імя"
+					   additionalStyle={ style_module.inputForm } />
 				<Input onChangeText={(email) => this.setState({email})}
 					   value={this.state.email}
 					   placeholder="Email"
@@ -45,10 +52,10 @@ class App extends Component{
 					   placeholder="Пароль"
 					   additionalStyle={ style_module.inputForm } />
 				<View>
-					<TouchableOpacity onPress={Actions.signScene}>
-						<Text style={styles.signUpLink}>Реєстрація</Text>
+					<TouchableOpacity onPress={Actions.loginScene}>
+						<Text style={styles.signUpLink}>Login</Text>
 					</TouchableOpacity>
-				</View>
+				</View> 
 			</View>
 		)
 	}
@@ -66,7 +73,7 @@ class App extends Component{
 
 					<View>
 						{this.state.loading ? <Loader/> : this.renderForm()}
-						<Button text="Увійти" click={this.loginButtonPress.bind(this)} />
+						<Button text="Реєстрація" click={this.loginButtonPress.bind(this)} />
 					</View>
 				</ScrollView>
 				<View style= { styles.navigation } >
