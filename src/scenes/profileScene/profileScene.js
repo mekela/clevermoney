@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Image, ScrollView, Text, View} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -8,20 +8,40 @@ import Input from "../../components/input";
 import Button from "../../components/button";
 import Nav from "../../components/nav";
 import Icon from "react-native-vector-icons/EvilIcons";
+import {uploadImage} from "../../actions"
 
-export default class App extends React.Component {
+import ImagePicker from 'react-native-image-picker';
+
+class App extends Component{
+	constructor(){
+		super();
+		this.state = {url : require('../../../assets/cat.jpg')}
+	}
+	selectImageButtonPress(){
+		ImagePicker.showImagePicker({}, (response) => {
+			console.log(response);
+			//console.log(response.uri, response.fileName);
+			uploadImage(response, response.fileName).then((link)=>{
+				this.setState({
+					url:{url:link}
+				});
+			})
+		});
+	}
+
 	render(){
 		return (
 			<View style = { styles.container }>
 				{/*<View style= { styles.topInner } >*/}
-					{/*<Text style={ [styles.companyName, style_module.TopTitle] } >*/}
-						{/*Налаштування Профіля*/}
-					{/*</Text>*/}
+				{/*<Text style={ [styles.companyName, style_module.TopTitle] } >*/}
+				{/*Налаштування Профіля*/}
+				{/*</Text>*/}
 				{/*</View>*/}
 
 				<ScrollView style= { [styles.content, styles.topInner] } >
 					<Image style={ style_module.profileImage }
-					       source={require('../../../assets/cat.jpg')}
+					       source={this.state.url}
+
 					/>
 					<View style={style_module.list_link_wrapper}>
 						<Text style={style_module.list_link}>Валюта</Text>
@@ -54,9 +74,9 @@ export default class App extends React.Component {
 					<Input placeholder="password" icon="key" />
 
 					<View style= { styles.navigation } >
-						<Button text="Оновити"/>
+						<Button text="Оновити" click={this.selectImageButtonPress.bind(this)}/>
 					</View>
-					<Button text="Вийти" click={Actions.loginScene}></Button>
+					<Button text="Вийти" ></Button>
 				</ScrollView>
 
 				<Nav/>
@@ -64,3 +84,4 @@ export default class App extends React.Component {
 		);
 	}
 }
+export default App;
