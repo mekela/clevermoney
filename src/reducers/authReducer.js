@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
-	email: '',
-	password: ''
+	email:'test@test.ua',
+	password:'123123123',
 };
 
 export default function reducer(state = INITIAL_STATE, action) {

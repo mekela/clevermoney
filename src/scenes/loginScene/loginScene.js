@@ -9,7 +9,7 @@ import Button from "../../components/button";
 import style_module from "./styles";
 import Icon from "react-native-vector-icons/EvilIcons";
 import Loader from "../../components/loader";
-import {signIn, changeAuthData} from "../actions"
+import {signIn, changeAuthData} from "../../actions"
 
 class App extends Component{
 	constructor(){
