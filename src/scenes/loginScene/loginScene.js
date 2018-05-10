@@ -29,7 +29,7 @@ class App extends Component{
 		this.setState({loading: true});
 
 		this.props.signIn(this.props.auth)
-			.then(Actions.profile)
+			.then(Actions.categoryExpensesScene)
 			.catch(error=>{alert(error)})
 			.finally(() => {
 				this.setState({loading: false})

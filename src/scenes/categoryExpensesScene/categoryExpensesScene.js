@@ -1,68 +1,122 @@
-import React, {Component} from 'react';
-import {ScrollView, Text, TouchableOpacity, View } from 'react-native';
+// import {TouchableOpacity, ScrollView, View, Text, Image} from "react-native";
+// import React, {Component} from "react";
+// import {connect} from 'react-redux';
+// import {Actions} from 'react-native-router-flux';
+//
+// import styles from "../../themes/styles";
+// import Loader from "../../components/loader";
+// import Layout from "../../components/layout"
+// import {getCafes, setCafe} from "../../actions/cafeActions";
+//
+// class categoryExpanseScene extends Component {
+//
+// 	componentWillMount() {
+// 		this.props.getCafes();
+// 	}
+//
+// 	itemPress(cafe) {
+// 		this.props.setCafe(cafe);
+// 		Actions.item();
+// 	}
+//
+// 	renderCafes(){
+// 		console.log(this.props.cafes.getCafes);
+// 		return this.props.cafes.getCafes.map(cafe => (
+// 			<TouchableOpacity key={cafe.id}>
+// 				<Text>{cafe.name}</Text>
+// 				<Text>{cafe.description}</Text>
+// 			</TouchableOpacity>
+// 		))
+// 	}
+//
+// 	render(){
+// 		return (
+// 			<View style = { styles.container }>
+// 				<ScrollView style= { [styles.content, styles.topInner] } >
+//
+// 					{this.props.cafes.loading ? <Loader/> : this.renderCafes()}
+// 					{/*<View style= { styles.expenseItemWrapper } >*/}
+// 						{/*<ExpenseItem>Категорія 1</ExpenseItem>*/}
+// 						{/*<ExpenseItem>Категорія 2</ExpenseItem>*/}
+// 						{/*<ExpenseItem>Категорія 3</ExpenseItem>*/}
+// 						{/*<ExpenseItem>Категорія 4</ExpenseItem>*/}
+// 					{/*</View>*/}
+// 					<View style={styles.subtitle_wrapper}>
+// 						<Text style={styles.subtitle}>Нова категорія</Text>
+// 					</View>
+// 					<Input value="Категорія 1" />
+// 					<View style= { styles.navigation } >
+// 						<Button text="Додати"/>
+// 					</View>
+// 				</ScrollView>
+// 				<Nav/>
+// 			</View>
+// 		);
+// 	}
+// }
+//
+// const mapStateToProps = ({cafes})=>{
+// 	return { cafes }
+// };
+//
+// const mapActionsToProps = {
+// 	getCafes, setCafe
+// };
+//
+// export default connect(mapStateToProps, mapActionsToProps)(categoryExpanseScene);
 
-import styles from "../../themes/styles";
-import style_module from "./styles";
-import ExpenseItem from "../../components/expenseItem";
-import Input from "../../components/input";
-import Nav from "../../components/nav";
-import {getCafes} from "../../actions/cafeActions";
+import {TouchableOpacity, ScrollView, View, Text, Image} from "react-native";
+import React, {Component} from "react";
+import {connect} from 'react-redux';
+import {Actions} from 'react-native-router-flux';
+
 import Loader from "../../components/loader";
-import Button from "../../components/button";
+import Layout from "../../components/layout"
+import {getCafes, setCafe} from "../../actions/cafeActions";
 
-class categoryExpanseScene extends Component {
+class listScene extends Component {
 
-	constructor(){
-		super();
-		this.state = {cafes:[], loading: false}
+
+	componentWillMount() {
+		this.props.getCafes();
 	}
 
-	componentWillMount(){
-
-		this.setState({loading: true});
-		getCafes()
-			.then(cafes =>{
-				this.setState({cafes})
-			}).catch(error =>{
-				console.log(error);
-			}).finally((val) =>{
-				this.setState({loading: false});
-			})
+	itemPress(cafe) {
+		this.props.setCafe(cafe);
+		Actions.item();
 	}
 
-	renderCafes(){
-		return this.state.cafes.map(cafe => (
-			<TouchableOpacity key={cafe.id}>
-				<Text>{cafe.name}</Text>
-				<Text>{cafe.description}</Text>
-			</TouchableOpacity>
-		))
+	renderCafes() {
+
+		// return this.props.cafes.list.map(items => (
+		// 		<TouchableOpacity onPress={this.itemPress.bind(this, items)} key={items.id}>
+		// 			<View>
+		// 				<Text>{items.name}</Text>
+		// 			</View>
+		//
+		// 		</TouchableOpacity>
+		// 	)
+		// );
 	}
 
-	render(){
+	render() {
 		return (
-			<View style = { styles.container }>
-				<ScrollView style= { [styles.content, styles.topInner] } >
-					{/*{this.renderCafes()}*/}
-					{/*{this.state.loading?<Loader/>:null}*/}
-					<View style= { styles.expenseItemWrapper } >
-						<ExpenseItem>Категорія 1</ExpenseItem>
-						<ExpenseItem>Категорія 2</ExpenseItem>
-						<ExpenseItem>Категорія 3</ExpenseItem>
-						<ExpenseItem>Категорія 4</ExpenseItem>
-					</View>
-					<View style={styles.subtitle_wrapper}>
-						<Text style={styles.subtitle}>Нова категорія</Text>
-					</View>
-					<Input value="Категорія 1" />
-					<View style= { styles.navigation } >
-						<Button text="Додати"/>
-					</View>
+			<Layout title="Cafe around you" active="list">
+				<ScrollView>
+					{this.props.cafes.loading ? <Loader/> : this.renderCafes()}
+
 				</ScrollView>
-				<Nav/>
-			</View>
-		);
+			</Layout>
+		)
 	}
 }
 
-export default categoryExpanseScene;
+const mapStateToProps = ({cafes})=>{
+	return { cafes }
+};
+
+const mapActionsToProps = {
+	getCafes, setCafe
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(listScene);
