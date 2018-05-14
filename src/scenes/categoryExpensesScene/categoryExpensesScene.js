@@ -73,6 +73,7 @@ import {Actions} from 'react-native-router-flux';
 import Loader from "../../components/loader";
 import Layout from "../../components/layout"
 import {getCafes, setCafe} from "../../actions/cafeActions";
+import Toaster from '../../../src/components/toaster'
 
 class listScene extends Component {
 
@@ -80,6 +81,12 @@ class listScene extends Component {
 	componentWillMount() {
 		this.props.getCafes();
 	}
+
+	// componentDidMount() {
+	// 	setTimeout(() => {
+	// 		Toaster.showMessage('2222');
+	// 	},2000)
+	// }
 
 	itemPress(cafe) {
 		this.props.setCafe(cafe);
@@ -103,6 +110,15 @@ class listScene extends Component {
 		return (
 			<Layout title="Cafe around you" active="list">
 				<ScrollView>
+					<TouchableOpacity onPress={() => Toaster.showMessage('1')}>
+						<Text>Click me 1</Text>
+					</TouchableOpacity>
+					<TouchableOpacity onPress={() => Toaster.showMessage('2')}>
+						<Text>Click me 2</Text>
+					</TouchableOpacity>
+					<TouchableOpacity onPress={() => Toaster.showMessage('3')}>
+						<Text>Click me 3</Text>
+					</TouchableOpacity>
 					{this.props.cafes.loading ? <Loader/> : this.renderCafes()}
 
 				</ScrollView>
