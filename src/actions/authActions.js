@@ -24,6 +24,16 @@ export const signIn = ({email, password}) => (dispatch) => {
 		});
 };
 
+export const signOut = () => (dispatch) => {
+
+	return firebase.auth()
+		.signOut().then(() => {
+			dispatch({type: 'auth_user_out'});
+			Actions.loginScene();
+			console.log('logout');
+		});
+};
+
 
 export const signUp = ({name, email, password}) => {
 
@@ -56,14 +66,14 @@ export const signUp = ({name, email, password}) => {
 };
 
 export const checkAuth = () => {
-	AsyncStorage.clear();
-	Actions.signIn();
-	// AsyncStorage.getItem('apiToken', (err, apiToken) => {
-	//   if(apiToken){
-	//     return Actions.list();
-	//   }
-	//   Actions.signIn();
-	// })
+
+	return firebase.auth().onAuthStateChanged((user) => {
+		if (user) {
+			return Promise.resolve('true');;
+		} else {
+			return Promise.reject('false');
+		}
+	});
 }
 
 

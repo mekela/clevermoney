@@ -95,30 +95,30 @@ class listScene extends Component {
 
 	renderCafes() {
 
-		// return this.props.cafes.list.map(items => (
-		// 		<TouchableOpacity onPress={this.itemPress.bind(this, items)} key={items.id}>
-		// 			<View>
-		// 				<Text>{items.name}</Text>
-		// 			</View>
-		//
-		// 		</TouchableOpacity>
-		// 	)
-		// );
+		return this.props.cafes.list.map(items => (
+				<TouchableOpacity onPress={this.itemPress.bind(this, items)} key={items.id}>
+					<View>
+						<Text>{items.name}</Text>
+					</View>
+
+				</TouchableOpacity>
+			)
+		);
 	}
 
 	render() {
 		return (
 			<Layout title="Cafe around you" active="list">
 				<ScrollView>
-					<TouchableOpacity onPress={() => Toaster.showMessage('1')}>
-						<Text>Click me 1</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={() => Toaster.showMessage('2')}>
-						<Text>Click me 2</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={() => Toaster.showMessage('3')}>
-						<Text>Click me 3</Text>
-					</TouchableOpacity>
+					{/*<TouchableOpacity onPress={() => Toaster.showMessage('1')}>*/}
+						{/*<Text>Click me 1</Text>*/}
+					{/*</TouchableOpacity>*/}
+					{/*<TouchableOpacity onPress={() => Toaster.showMessage('2')}>*/}
+						{/*<Text>Click me 2</Text>*/}
+					{/*</TouchableOpacity>*/}
+					{/*<TouchableOpacity onPress={() => Toaster.showMessage('3')}>*/}
+						{/*<Text>Click me 3</Text>*/}
+					{/*</TouchableOpacity>*/}
 					{this.props.cafes.loading ? <Loader/> : this.renderCafes()}
 
 				</ScrollView>

@@ -29,7 +29,7 @@ class App extends Component{
 		this.setState({loading: true});
 
 		this.props.signIn(this.props.auth)
-			.then(Actions.categoryExpensesScene)
+			.then(Actions.homepageScene)
 			.catch(error=>{alert(error)})
 			.finally(() => {
 				this.setState({loading: false})
@@ -51,6 +51,7 @@ class App extends Component{
 					additionalStyle={ style_module.inputForm }
 					onChangeText={(email) => this.changeAuthData('email',email)}
 					value={this.props.auth.email}
+					autoCapitalize = 'none'
 					keyboardType="email-address"
 				/>
 
@@ -58,6 +59,9 @@ class App extends Component{
 					placeholder="Password"
 					additionalStyle={ style_module.inputForm }
 					onChangeText={(password) => this.changeAuthData('password',password)}
+					autoCapitalize = 'none'
+					secureTextEntry = {true}
+					autoCapitalize = 'none'
 					value={this.props.auth.password}
 				/>
 				<Button text="Увійти" click={this.loginButtonPress.bind(this)} />
@@ -98,4 +102,4 @@ class App extends Component{
 	}
 }
 
-export default connect(({auth})=>{ return {auth}}, { changeAuthData, signIn })(App);
+export default connect(({auth})=>{ return {auth}}, { signIn })(App);

@@ -39,16 +39,20 @@ class App extends Component{
 					placeholder="Name"
 					onChangeText={(name) => this.setState({name})}
 					value={this.state.name}
+					autoCapitalize = 'none'
 					additionalStyle={ style_module.inputForm } />
 				<Input
 					placeholder="Email"
 					onChangeText={(email) => this.setState({email})}
 					value={this.state.email}
+					autoCapitalize = 'none'
 					additionalStyle={ style_module.inputForm } />
 				<Input
 					placeholder="Password"
 					onChangeText={(password) => this.setState({password})}
 					value={this.state.password}
+					autoCapitalize = 'none'
+					secureTextEntry = {true}
 					additionalStyle={ style_module.inputForm } />
 				<Button text="Зареєструватись" click = {this.signUpButtonPress.bind(this)} />
 			</View>

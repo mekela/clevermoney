@@ -14,6 +14,8 @@ export default function reducer(state = INITIAL_STATE, action) {
 			};
 		case 'auth_user_receive':
 			return { ...action.payload };
+		case 'auth_user_out':
+			return INITIAL_STATE;
 		default:
 			return state;
 	}

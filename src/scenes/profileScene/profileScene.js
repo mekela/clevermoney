@@ -5,22 +5,26 @@ import { Actions } from 'react-native-router-flux';
 import styles from "../../themes/styles";
 import style_module from "./styles";
 import Input from "../../components/input";
+import ButtonLink from "../../components/buttonLink";
 import Button from "../../components/button";
 import Nav from "../../components/nav";
 import Icon from "react-native-vector-icons/EvilIcons";
-import {uploadImage} from "../../actions"
+import {signIn, uploadImage, signOut, checkAuth} from "../../actions"
 
 import ImagePicker from 'react-native-image-picker';
+import {connect} from "react-redux";
 
 class App extends Component{
 	constructor(){
 		super();
 		this.state = {url : require('../../../assets/cat.jpg')}
 	}
+	componentWillMount(){
+
+	}
+
 	selectImageButtonPress(){
 		ImagePicker.showImagePicker({}, (response) => {
-			console.log(response);
-			//console.log(response.uri, response.fileName);
 			uploadImage(response, response.fileName).then((link)=>{
 				this.setState({
 					url:{url:link}
@@ -28,6 +32,10 @@ class App extends Component{
 			})
 		});
 	}
+	logoutButtonPress(){
+		this.props.signOut();
+	}
+
 
 	render(){
 		return (
@@ -43,18 +51,13 @@ class App extends Component{
 					       source={this.state.url}
 
 					/>
-					<View style={style_module.list_link_wrapper}>
-						<Text style={style_module.list_link}>Валюта</Text>
-						<Icon style={style_module.list_icon} name="chevron-right" size={30} color="#343434"></Icon>
-					</View>
-					<View style={style_module.list_link_wrapper}>
-						<Text style={style_module.list_link}>Повідомлення</Text>
-						<Icon style={style_module.list_icon} name="chevron-right" size={30} color="#343434"></Icon>
-					</View>
-					<View style={style_module.list_link_wrapper}>
-						<Text style={style_module.list_link}>Повідомити про помилку</Text>
-						<Icon style={style_module.list_icon} name="chevron-right" size={30} color="#343434"></Icon>
-					</View>
+					<Text>Ім'я: {this.props.auth.name}</Text>
+					<Text>Email: {this.props.auth.email}</Text>
+
+					<ButtonLink text="Валюта"/>
+					<ButtonLink text="Повідомлення"/>
+					<ButtonLink text="Повідомити про помилку"/>
+
 					<View style={styles.subtitle_wrapper}>
 						<Text style={styles.subtitle}>Замінити пароль</Text>
 					</View>
@@ -76,7 +79,7 @@ class App extends Component{
 					<View style= { styles.navigation } >
 						<Button text="Оновити" click={this.selectImageButtonPress.bind(this)}/>
 					</View>
-					<Button text="Вийти" ></Button>
+					<Button text="Вийти" click={this.logoutButtonPress.bind(this)} ></Button>
 				</ScrollView>
 
 				<Nav/>
@@ -84,4 +87,4 @@ class App extends Component{
 		);
 	}
 }
-export default App;
+export default connect(({auth})=>{ return {auth}}, { signOut})(App);

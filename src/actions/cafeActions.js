@@ -8,7 +8,7 @@ export const getCafes = (params) => (dispatch) => {
 
 	dispatch({type: cafesTypes.loaderStart});
 
-	var recentPostsRef = firebase.database().ref('/categories');
+	// var recentPostsRef = firebase.database().ref('/categories');
 	// recentPostsRef.once('value').then(snapshot => {
 	// 	// snapshot.val() is the dictionary with all your keys/values from the '/store' path
 	// 	//this.setState({ stores: snapshot.val() })
@@ -21,30 +21,30 @@ export const getCafes = (params) => (dispatch) => {
 	// 	dispatch({type: cafesTypes.listReceive, val})
 	// })
 
-	recentPostsRef.on('value', (snap) => {
-		var items = [];
-		snap.forEach((child) => {
-			items.push({
-				name: child.val().name,
-				id: child.key
-			});
-		});
-		dispatch({type: cafesTypes.listReceive, items});
-
-	});
-
-	// axios.get(`${apiUrl}/api/cafes`).then(response => {
-	// 	const payload = response.data.map(cafe => {
-	// 		cafe.image = cafe.pictures[0] != undefined
-	// 			? {url: `${apiUrl}/${cafe.pictures[0].url.replace('.jpg', '-100x100.jpg')}`}
-	// 			: require('../themes/logo.png')
-	// 		return cafe;
+	// recentPostsRef.on('value', (snap) => {
+	// 	var items = [];
+	// 	snap.forEach((child) => {
+	// 		items.push({
+	// 			name: child.val().name,
+	// 			id: child.key
+	// 		});
 	// 	});
-	// 	dispatch({type: cafesTypes.listReceive, payload})
+	// 	dispatch({type: cafesTypes.listReceive, items});
 	//
-	// }).finally(() => {
-	// 	dispatch({type: cafesTypes.loaderEnd});
 	// });
+
+	axios.get(`${apiUrl}/api/cafes`).then(response => {
+		const payload = response.data.map(cafe => {
+			cafe.image = cafe.pictures[0] != undefined
+				? {url: `${apiUrl}/${cafe.pictures[0].url.replace('.jpg', '-100x100.jpg')}`}
+				: require('../themes/logo.png')
+			return cafe;
+		});
+		dispatch({type: cafesTypes.listReceive, payload})
+
+	}).finally(() => {
+		dispatch({type: cafesTypes.loaderEnd});
+	});
 };
 
 export const setCafe = cafe => dispatch =>

@@ -15,6 +15,7 @@ const Routers = () => <Router>
 	<Scene key="root">
 		<Stack key="unregistered">
 			<Scene
+				initial
 				key="loginScene"
 				component={loginScene}
 				title="Авторизація"
@@ -40,7 +41,6 @@ const Routers = () => <Router>
 				title="Додати витрати"
 				hideNavBar = {false}/>
 			<Scene
-				initial
 				key="categoryExpensesScene"
 				component={categoryExpensesScene}
 				title="Категорії витрат"
