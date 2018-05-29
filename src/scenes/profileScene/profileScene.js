@@ -51,10 +51,14 @@ class App extends Component{
 					       source={this.state.url}
 
 					/>
-					<Text>Ім'я: {this.props.auth.name}</Text>
-					<Text>Email: {this.props.auth.email}</Text>
+					<View style={style_module.strong_text_wrapper}>
+						<Text style={style_module.strong_text}>Ім'я: </Text> <Text>{this.props.auth.name}</Text>
+					</View>
+					<View style={style_module.strong_text_wrapper}>
+						<Text style={style_module.strong_text}>Email: </Text> <Text>{this.props.auth.email}</Text>
+					</View>
 
-					<ButtonLink text="Валюта"/>
+					<ButtonLink text="Валюта" click={Actions.currencyScene}/>
 					<ButtonLink text="Повідомлення"/>
 					<ButtonLink text="Повідомити про помилку"/>
 

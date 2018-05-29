@@ -10,6 +10,8 @@ import style_module from "./styles";
 import Icon from "react-native-vector-icons/EvilIcons";
 import Loader from "../../components/loader";
 import {signIn, changeAuthData} from "../../actions"
+import { LoginButton } from 'react-native-fbsdk';
+import FBLoginButton from "../../components/FBLoginButton";
 
 class App extends Component{
 	constructor(){
@@ -65,6 +67,8 @@ class App extends Component{
 					value={this.props.auth.password}
 				/>
 				<Button text="Увійти" click={this.loginButtonPress.bind(this)} />
+				<Button text="Facebook" click={this.loginButtonPress.bind(this)} />
+				<FBLoginButton />
 			</View>
 		)
 	}

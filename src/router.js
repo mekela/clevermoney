@@ -8,6 +8,7 @@ import homepageScene from './scenes/homepageScene/homepageScene';
 import addExpensesScene from './scenes/addExpensesScene/addExpensesScene';
 import categoryExpensesScene from './scenes/categoryExpensesScene/categoryExpensesScene';
 import profileScene from './scenes/profileScene/profileScene';
+import currencyScene from './scenes/currencyScene/currencyScene';
 import statisticExpensesScene from './scenes/statisticExpensesScene/statisticExpensesScene';
 import parserScene from './scenes/parserScene/parserScene';
 
@@ -49,6 +50,11 @@ const Routers = () => <Router>
 				key="profileScene"
 				component={profileScene}
 				title="Профіль"
+				hideNavBar = {false}/>
+			<Scene
+				key="currencyScene"
+				component={currencyScene}
+				title="Валюта"
 				hideNavBar = {false}/>
 			<Scene
 				key="statisticExpensesScene"
