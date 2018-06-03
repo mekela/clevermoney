@@ -10,7 +10,7 @@ import style_module from "./styles";
 export default class App extends React.Component {
 	render() {
 		return (
-			<View style={style_module.addExpensesContainer}>
+			<View >
 				<View>
 					<Text style={style_module.addExpensesTitle} >Додайте витрати</Text>
 				</View>
@@ -48,7 +48,7 @@ export default class App extends React.Component {
 				</View>
 				<View style= { style_module.expenseForm } >
 					<Input placeholder="#Hashtag"   />
-					<Input placeholder="$Expense"   /> 
+					<Input placeholder="$Expense"   />
 				</View>
 				<View style= { styles.navigation } >
 					<Button text="Додати витрати"/>

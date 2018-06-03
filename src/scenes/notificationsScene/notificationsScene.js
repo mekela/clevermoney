@@ -7,9 +7,9 @@ import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-
 import {connect} from 'react-redux';
 import Loader from "../../components/loader";
 import Button from "../../components/button";
-import {changeAuthData, updateUserDetail} from "../../actions";
+import {changeAuthData, updateUserDetailNotifications} from "../../actions";
 
-class currencyScene extends Component{
+class notyficationsScene extends Component{
 	constructor(){
 		super();
 		this.state = {

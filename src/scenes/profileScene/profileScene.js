@@ -40,16 +40,10 @@ class App extends Component{
 	render(){
 		return (
 			<View style = { styles.container }>
-				{/*<View style= { styles.topInner } >*/}
-				{/*<Text style={ [styles.companyName, style_module.TopTitle] } >*/}
-				{/*Налаштування Профіля*/}
-				{/*</Text>*/}
-				{/*</View>*/}
 
 				<ScrollView style= { [styles.content, styles.topInner] } >
 					<Image style={ style_module.profileImage }
 					       source={this.state.url}
-
 					/>
 					<View style={style_module.strong_text_wrapper}>
 						<Text style={style_module.strong_text}>Ім'я: </Text> <Text>{this.props.auth.name}</Text>
@@ -59,7 +53,7 @@ class App extends Component{
 					</View>
 
 					<ButtonLink text="Валюта" click={Actions.currencyScene}/>
-					<ButtonLink text="Повідомлення"/>
+					{/*<ButtonLink text="Повідомлення"/>*/}
 					<ButtonLink text="Повідомити про помилку"/>
 
 					<View style={styles.subtitle_wrapper}>

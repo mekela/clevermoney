@@ -14,55 +14,52 @@ import parserScene from './scenes/parserScene/parserScene';
 
 const Routers = () => <Router>
 	<Scene key="root">
-		<Stack key="unregistered">
-			<Scene
-				initial
-				key="loginScene"
-				component={loginScene}
-				title="Авторизація"
-				hideNavBar = {true}/>
-			<Scene
-				key="registerScene"
-				component={registerScene}
-				title="Реєстрація"
-				hideNavBar = {true}/>
-			<Scene
-				key="wizardScene"
-				component={wizardScene}
-				title="Ознайомлення"
-				hideNavBar = {true}/>
-			<Scene
-				key="homepageScene"
-				component={homepageScene}
-				title="Головна"
-				hideNavBar = {true}/>
-			<Scene
-				key="addExpensesScene"
-				component={addExpensesScene}
-				title="Додати витрати"
-				hideNavBar = {false}/>
-			<Scene
-				key="categoryExpensesScene"
-				component={categoryExpensesScene}
-				title="Категорії витрат"
-				hideNavBar = {false}/>
-			<Scene
-				key="profileScene"
-				component={profileScene}
-				title="Профіль"
-				hideNavBar = {false}/>
-			<Scene
-				key="currencyScene"
-				component={currencyScene}
-				title="Валюта"
-				hideNavBar = {false}/>
-			<Scene
-				key="statisticExpensesScene"
-				component={statisticExpensesScene}
-				title="Статистика"
-				hideNavBar = {false}/>
-		</Stack>
-
+		<Scene
+			initial
+			key="loginScene"
+			component={loginScene}
+			title="Авторизація"
+			hideNavBar = {true}/>
+		<Scene
+			key="registerScene"
+			component={registerScene}
+			title="Реєстрація"
+			hideNavBar = {true}/>
+		<Scene
+			key="wizardScene"
+			component={wizardScene}
+			title="Ознайомлення"
+			hideNavBar = {true}/>
+		<Scene
+			key="homepageScene"
+			component={homepageScene}
+			title="Головна"
+			hideNavBar = {true}/>
+		<Scene
+			key="addExpensesScene"
+			component={addExpensesScene}
+			title="Додати витрати"
+			hideNavBar = {false}/>
+		<Scene
+			key="categoryExpensesScene"
+			component={categoryExpensesScene}
+			title="Категорії витрат"
+			hideNavBar = {false}/>
+		<Scene
+			key="profileScene"
+			component={profileScene}
+			title="Профіль"
+			hideNavBar = {false}/>
+		<Scene
+			key="currencyScene"
+			component={currencyScene}
+			title="Валюта"
+			hideNavBar = {false}/>
+		<Scene
+			key="statisticExpensesScene"
+			component={statisticExpensesScene}
+			title="Статистика"
+			hideNavBar = {false}/>
 	</Scene>
 </Router>;
 

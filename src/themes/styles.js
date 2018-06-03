@@ -10,7 +10,11 @@ const styles = StyleSheet.create({
 		height: '100%',
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor:'#fff'
+		backgroundColor:'#fff',
+	},
+	innerWrapper:{
+		paddingHorizontal:15,
+		paddingVertical: 15
 	},
 	top: {
 		height: 200,
@@ -27,9 +31,9 @@ const styles = StyleSheet.create({
 		height: 100,
 		justifyContent: 'center'
 	},
-	content: {
-		flex: 1,
-	},
+	// content: {
+	// 	flex: 1,
+	// },
 	logo: {
 		width: 50,
 		height: 67
@@ -50,7 +54,7 @@ const styles = StyleSheet.create({
 		shadowOffset: { width: 0, height: 2 },
 		shadowOpacity: 0.2,
 		marginBottom: 10,
-		elevation: 2, 
+		elevation: 2,
 	},
 	buttonInside: {
 		alignSelf: 'center',
@@ -184,7 +188,7 @@ const styles = StyleSheet.create({
 		marginLeft: 7,
 		marginRight: 7,
 		marginBottom: 25,
-		backgroundColor: '#f1f1f1', 
+		backgroundColor: '#f1f1f1',
 		alignItems: 'center',
 		justifyContent: 'center',
 		paddingTop: 20,

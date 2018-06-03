@@ -97,3 +97,25 @@ export const updateUser = ({name, email, phone}) => (dispatch) => {
 	});
 
 }
+export const updateUserDetail = ({currency}) => (dispatch) => {
+	// console.log(currency);
+	const curUser = firebase.auth().currentUser;
+	const ref = firebase.database().ref(`users/${curUser.uid}/details`);
+	ref.set({
+		currency,
+	});
+	ref.on('value', function (snapshot) {
+		dispatch({type: 'auth_user_receive', payload: snapshot.val()});
+	});
+}
+export const updateUserDetailNotifications = ({notification}) => (dispatch) => {
+	// console.log(currency);
+	const curUser = firebase.auth().currentUser;
+	const ref = firebase.database().ref(`users/${curUser.uid}/details`);
+	ref.set({
+		notification,
+	});
+	ref.on('value', function (snapshot) {
+		dispatch({type: 'auth_user_receive', payload: snapshot.val()});
+	});
+}
