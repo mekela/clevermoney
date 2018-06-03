@@ -106,4 +106,4 @@ class App extends Component{
 	}
 }
 
-export default connect(({auth})=>{ return {auth}}, { signIn })(App);
+export default connect(({auth})=>{ return {auth}}, { signIn, changeAuthData })(App);

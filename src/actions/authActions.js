@@ -2,6 +2,7 @@ import {AsyncStorage} from 'react-native'
 import {apiUrl} from "../config/constants"
 import {Actions} from 'react-native-router-flux';
 import firebase from "../config/firebase";
+import Toaster from '../../src/components/toaster'
 
 export const signIn = ({email, password}) => (dispatch) => {
 
@@ -63,6 +64,35 @@ export const signUp = ({name, email, password}) => {
 		}).catch(error => {
 			return Promise.reject(error);
 		})
+};
+
+reauthenticate = (currentPassword) => {
+	var user = firebase.auth().currentUser;
+	var cred = firebase.auth.EmailAuthProvider.credential(
+		user.email, currentPassword);
+	return user.reauthenticateWithCredential(cred).then(function() {
+		//console.log('reauthenticated');
+	}).catch(function(error) {
+		Toaster.showMessage(error.message);
+	});;
+}
+
+export const changePassword = (currentPassword, newPassword) =>  dispatch => {
+	if (currentPassword == "") {
+		return Promise.reject('enter current Password')
+	}
+	if (newPassword == "") {
+		return Promise.reject('enter new Password')
+	}
+	console.log(currentPassword, newPassword);
+	return reauthenticate(currentPassword).then(() => {
+		var user = firebase.auth().currentUser;
+		user.updatePassword(newPassword).then(() => {
+			alert("Password updated!");
+		}).catch((error) => {
+			Toaster.showMessage(error.message);
+		});
+	}).catch((error) => { console.log(error); });
 };
 
 export const checkAuth = () => {

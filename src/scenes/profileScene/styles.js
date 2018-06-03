@@ -6,15 +6,18 @@ const module_style = StyleSheet.create({
 		marginTop:15,
 		textAlign:'center'
 	},
-	profileImage:{
+	profileImageWrapper:{
 		width: 100,
 		height: 100,
-		borderRadius: 50,
 		marginLeft:135,
 		marginRight:135,
 		marginBottom:20,
 	},
-
+	profileImage:{
+		width: 100,
+		height: 100,
+		borderRadius: 50,
+	},
 	form_label_wrapper:{
 		paddingHorizontal: 30
 	},
@@ -25,6 +28,19 @@ const module_style = StyleSheet.create({
 	},
 	strong_text_wrapper:{
 		flexDirection:'row'
+	},
+	editProfileImageWrapper:{
+		position: 'absolute',
+		bottom: 0,
+		backgroundColor: '#fff',
+		borderRadius: 35,
+		right: 0,
+		borderColor: 'black',
+		borderWidth: 0.5
+	},
+	editProfileImageIcon:{
+		paddingHorizontal: 5,
+		paddingVertical: 5,
 	}
 });
 
