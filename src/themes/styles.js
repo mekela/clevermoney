@@ -122,8 +122,8 @@ const styles = StyleSheet.create({
 		fontSize: 50
 	},
 	expenseItem: {
-		paddingTop: 8,
-		paddingBottom: 8,
+		paddingTop: 4,
+		paddingBottom: 4,
 		paddingLeft: 10,
 		paddingRight: 5,
 		backgroundColor:"#5cccc7",

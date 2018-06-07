@@ -10,9 +10,10 @@ import Button from "../../components/button";
 import {changeAuthData, updateUserDetail} from "../../actions";
 
 class currencyScene extends Component{
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 		this.state = {
+			currency: props.auth.currency,
 			loading: false,
 			types2: [{label: 'UAH (₴)', value: 'UAH'}, {label: 'USD ($)', value: 'USD'},],
 		}
@@ -20,22 +21,15 @@ class currencyScene extends Component{
 	}
 
 	componentWillMount(){
-		this.props.auth.details.currency ? this.props.auth.details.currency : 'UAH';
+
 	}
 
 	changeAuthData(field,value){
 		this.props.changeAuthData(field,value);
 	}
 	updateButtonPress(){
-		//console.log(this.props.auth.details)
-		this.props.updateUserDetail(this.props.auth.details);
+		this.props.updateUserDetail(this.props.auth, this.state.currency);
 	}
-	getInitialState() {
-		return {
-			value: 0,
-		}
-	}
-
 
 	render(){
 		return (
@@ -44,16 +38,16 @@ class currencyScene extends Component{
 			<ScrollView style={styles.innerWrapper}>
 				{this.state.loading ? <Loader/> : null}
 				<View style={style_module.titleWrapper} >
-					{/*<Text>Валюта {this.props.auth.details.currency} </Text>*/}
-					<Text style={style_module.title} >Активна валюта: {this.props.auth.details.currency}</Text>
+					<Text>Валюта {this.props.auth.currency} </Text>
+					<Text style={style_module.title} >Активна валюта: </Text>
 				</View>
 				<View style={style_module.radioFormWrapper} >
 					<RadioForm
 						animation={true}
 					>
 						{this.state.types2.map((obj, i) => {
-							console.log(obj);
-							var is_selected = obj.value == this.props.auth.details.currency;
+
+							var is_selected = obj.value == this.state.currency;
 							return (
 								<View key={i}>
 									<RadioButton
@@ -63,7 +57,7 @@ class currencyScene extends Component{
 										buttonColor={'#2196f3'}
 										labelColor={'#000'}
 										onPress={(value, index) => {
-											this.props.auth.details.currency = value;
+											this.setState({ currency: value });
 											this.changeAuthData('currency',value)
 										}}
 									/>

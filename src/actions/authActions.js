@@ -1,5 +1,3 @@
-import {AsyncStorage} from 'react-native'
-import {apiUrl} from "../config/constants"
 import {Actions} from 'react-native-router-flux';
 import firebase from "../config/firebase";
 import Toaster from '../../src/components/toaster'
@@ -84,7 +82,7 @@ export const changePassword = (currentPassword, newPassword) =>  dispatch => {
 	if (newPassword == "") {
 		return Promise.reject('enter new Password')
 	}
-	console.log(currentPassword, newPassword);
+
 	return reauthenticate(currentPassword).then(() => {
 		var user = firebase.auth().currentUser;
 		user.updatePassword(newPassword).then(() => {
@@ -92,7 +90,7 @@ export const changePassword = (currentPassword, newPassword) =>  dispatch => {
 		}).catch((error) => {
 			Toaster.showMessage(error.message);
 		});
-	}).catch((error) => { console.log(error); });
+	}).catch((error) => {  });
 };
 
 export const checkAuth = () => {
@@ -127,15 +125,17 @@ export const updateUser = ({name, email, phone}) => (dispatch) => {
 	});
 
 }
-export const updateUserDetail = ({currency}) => (dispatch) => {
-	// console.log(currency);
+export const updateUserDetail = (user, currency) => (dispatch) => {
+
 	const curUser = firebase.auth().currentUser;
-	const ref = firebase.database().ref(`users/${curUser.uid}/details`);
+	const ref = firebase.database().ref(`users/${curUser.uid}`);
 	ref.set({
-		currency,
+		...user, currency
 	});
 	ref.on('value', function (snapshot) {
 		dispatch({type: 'auth_user_receive', payload: snapshot.val()});
+		Actions.profileScene();
+		Toaster.showMessage("Валюта успішно оновлена");
 	});
 }
 export const updateUserDetailNotifications = ({notification}) => (dispatch) => {

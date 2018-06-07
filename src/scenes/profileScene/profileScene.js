@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {Image, ScrollView, Text, TouchableOpacity, View, Linking} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import styles from "../../themes/styles";
@@ -59,16 +59,17 @@ class App extends Component{
 						</TouchableOpacity>
 					</View>
 
-					<View style={style_module.strong_text_wrapper}>
-						<Text style={style_module.strong_text}>Ім'я: </Text> <Text>{this.props.auth.name}</Text>
-					</View>
+					{/*<View style={style_module.strong_text_wrapper}>*/}
+						{/*<Text style={style_module.strong_text}>Ім'я: </Text> <Text>{this.props.auth.name}</Text>*/}
+					{/*</View>*/}
 					<View style={style_module.strong_text_wrapper}>
 						<Text style={style_module.strong_text}>Email: </Text> <Text>{this.props.auth.email}</Text>
 					</View>
 
 					<ButtonLink text="Валюта" click={Actions.currencyScene}/>
 					{/*<ButtonLink text="Повідомлення"/>*/}
-					<ButtonLink text="Повідомити про помилку"/>
+					<ButtonLink text="Повідомити про помилку" click={() => Linking.openURL('mailto:support@clevermoney.com') }
+					            title="support@clevermoney.com"/>
 
 					<View style={styles.subtitle_wrapper}>
 						<Text style={styles.subtitle}>Замінити пароль</Text>

@@ -21,7 +21,7 @@ class App extends Component{
 		}
 	}
 	componentWillMount(){
-		console.log('props',this.props);
+		//console.log('props',this.props);
 	}
 
 	changeAuthData(field,value){
