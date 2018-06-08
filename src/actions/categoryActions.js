@@ -65,3 +65,10 @@ export const addCategory = ({ title }) => (dispatch) => {
 				console.log('Category creation failed');
 			});
 };
+
+export const makeActive = id => dispatch => {
+	return new Promise((resolve, reject) => {
+		dispatch({type: categoriesTypes.makeActive, payload: id});
+		resolve(true);
+	});
+}

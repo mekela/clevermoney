@@ -11,4 +11,11 @@ export const categoriesTypes = {
 	listReceive: 'categories_list_receive',
 	itemRemove: 'categories_id_remove',
 	itemAdd: 'categories_add',
+	makeActive: 'categories_id_active',
+};
+
+export const costsTypes = {
+	listCosts: 'costs_list',
+	removeCost: 'costs_remove',
+	addCost: 'costs_add',
 };

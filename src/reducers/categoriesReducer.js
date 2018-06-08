@@ -9,7 +9,6 @@ const NormalizeCategoriesList = (state, categories) => {
 		}, {}),
 		allIds: categories.map(current => current.id)
 	};
-
 	return {
 		...state,
 		categories: NormalizeCategories,
@@ -27,11 +26,9 @@ export default function reducer(state = INITIAL_STATE, action) {
 			return NormalizeCategoriesList(state, action.payload);
 		case categoriesTypes.itemRemove:
 			let index = state.categories.allIds.indexOf(action.payload);
-
 			if (index > -1) {
 				state.categories.allIds.splice(index, 1);
 			}
-
 			delete state.categories.byIds[action.payload];
 			return {...state};
 		case categoriesTypes.itemAdd:
@@ -41,6 +38,15 @@ export default function reducer(state = INITIAL_STATE, action) {
 				title: action.payload.title
 			};
 			return {...state};
+		case categoriesTypes.makeActive:
+			console.log('makeActive');
+			return {
+				...state,
+				categories: {
+					...state.categories,
+					current: action.payload
+				}
+			};
 		default:
 			return state;
 	}

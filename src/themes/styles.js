@@ -135,9 +135,17 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-around',
 		alignItems: 'center'
 	},
+	expenseItemActive: {
+		backgroundColor:"#408c88",
+	},
 	expenseItemText: {
 		color: '#fff',
 		marginRight: 10
+	},
+	titleWrapper:{
+		marginLeft:12,
+		marginRight:12,
+		marginBottom: 5
 	},
 	expenseItemWrapper:{
 		flexDirection: 'row',

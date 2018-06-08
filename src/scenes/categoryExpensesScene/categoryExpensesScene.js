@@ -35,10 +35,9 @@ class categoryExpanseScene extends Component {
 	}
 
 	renderCategories() {
-		//console.log(this.props.categories.categories);
 		return this.props.categories.categories.allIds.map((data) => {
 			return (
-				<ExpenseItem key={`expense-${data}`} click = {this.removeCategory.bind(this, data)}>{this.props.categories.categories.byIds[data].title}</ExpenseItem>
+				<ExpenseItem key={`expense-${data}`} click = {this.removeCategory.bind(this, data)} editable = {true}>{this.props.categories.categories.byIds[data].title}</ExpenseItem>
 			)
 		})
 	}
@@ -58,9 +57,10 @@ class categoryExpanseScene extends Component {
 						placeholder="Нова категорія"
 						onChangeText={(newCategory) => this.setState({newCategory})}
 						value=""/>
-					<View style= { styles.navigation } >
+					{this.state.newCategory!='' ? <View style= { styles.navigation } >
 						<Button text="Додати" click={this.addCategory.bind(this)}/>
-					</View>
+					</View> : null}
+
 				</ScrollView>
 				<Nav/>
 			</View>
