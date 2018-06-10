@@ -62,12 +62,16 @@ class addExpanseScene extends Component {
 					<View style={styles.subtitle_wrapper}>
 						<Text style={styles.subtitle}>Додати витрати:</Text>
 					</View>
-					<Input
-						placeholder="Витрати"
-						keyboardType = "numeric"
-						onChangeText={(newCost) => this.setState({newCost})}
-						value=""/>
-					<Text>{this.props.auth.currency}</Text>
+					<View>
+						<Input
+							style={styles.inputWithCurrency}
+							placeholder="Витрати"
+							keyboardType = "numeric"
+							onChangeText={(newCost) => this.setState({newCost})}
+							value=""/>
+						<Text style={styles.cyrrencyLabel}>{this.props.auth.currency}</Text>
+					</View>
+
 
 					{this.state.newCost!='' ? <View style= { styles.navigation } >
 						<Button text="Додати" click={this.addCosts.bind(this)}/>

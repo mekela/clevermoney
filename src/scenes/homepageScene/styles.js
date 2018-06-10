@@ -30,6 +30,23 @@ const module_style = StyleSheet.create({
 	},
 	inputForm:{
 		//height: 60
+	},
+	costs_wrapper: {
+		width: '100%',
+	},
+	monthly_budget_wrapper:{
+		paddingBottom: 14
+	},
+	monthly_budget_text:{
+		textAlign: 'center',
+		fontSize: 15,
+		paddingBottom: 3
+	},
+	monthly_budget_cost:{
+		textAlign: 'center',
+		color: '#4de1d3',
+		fontWeight: 'bold',
+		fontSize: 32
 	}
 });
 

@@ -31,9 +31,11 @@ export const addCost = ({ price, category }) => (dispatch) => {
 	}
 	console.log(price, category);
 	const { currentUser } = firebase.auth();
+	//var currentTime = new Date().toString();
 	return	firebase.database().ref(`/users/${currentUser.uid}/costs`)
-		.push({ price, category })
+		.push({ price, category, date: new Date().toString() })
 		.then((snapshot) => {
+
 			dispatch({ type: costsTypes.itemAdd, payload: {key: snapshot.key, price, category} });
 		})
 		.catch((error) => {

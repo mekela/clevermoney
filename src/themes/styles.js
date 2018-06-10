@@ -230,6 +230,14 @@ const styles = StyleSheet.create({
 		paddingBottom: 20,
 		paddingHorizontal: 30,
 	},
+	cyrrencyLabel:{
+		position: 'absolute',
+		right:45,
+		top:11
+	},
+	inputWithCurrency:{
+		paddingRight: 40
+	},
 	subtitle:{
 		fontSize:18,
 		fontWeight:'bold'
@@ -240,14 +248,29 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 16,
 		paddingVertical: 10,
 		flexDirection: 'row',
-		justifyContent: 'space-between'
+		justifyContent: 'space-between',
+		backgroundColor: '#cff7ff',
+		width
+	},
+	list_link_wrapper_small:{
+		backgroundColor: '#fff',
+		borderBottomWidth:0,
+		paddingVertical: 6,
 	},
 	list_link:{
 		fontSize:18
 	},
+	list_link_small:{
+		fontSize:14
+	},
 	list_icon:{
 
 	},
+	add_cost_icon:{
+		position: 'absolute',
+		bottom: 60,
+		left: 5
+	}
 });
 
 export default styles;
