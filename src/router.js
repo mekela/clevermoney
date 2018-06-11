@@ -31,7 +31,6 @@ const Routers = () => <Router>
 			title="Ознайомлення"
 			hideNavBar = {true}/>
 		<Scene
-			initial
 			key="homepageScene"
 			component={homepageScene}
 			title="Головна"
