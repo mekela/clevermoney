@@ -72,6 +72,7 @@ class currencyScene extends Component{
 				</View>
 
 			</ScrollView>
+			<Nav active = {'user'}/>
 		</View>
 
 	);

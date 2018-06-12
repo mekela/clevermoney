@@ -62,7 +62,7 @@ class categoryExpanseScene extends Component {
 					</View> : null}
 
 				</ScrollView>
-				<Nav/>
+				<Nav active = {'tag'}/>
 			</View>
 		);
 	}

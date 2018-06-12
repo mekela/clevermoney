@@ -8,9 +8,10 @@ import style_module from "./styles";
 import Nav from "../../components/nav";
 import Loader from "../../components/loader";
 import ExpenseItem from "../../components/expenseItem";
-import {getCategories, addCost, removeCost, makeActive} from "../../actions";
+import {getCategories, addCost, removeCost, makeActive, getCosts} from "../../actions";
 import {connect} from "react-redux";
 import Toaster from "../../components/toaster";
+import CostRow from "../../components/costRow";
 
 class addExpanseScene extends Component {
 	constructor(){
@@ -22,8 +23,11 @@ class addExpanseScene extends Component {
 	}
 	componentWillMount() {
 		this.setState({loading:true})
-		this.props.getCategories().finally(()=>{
-			this.setState({loading:false})
+		this.props.getCategories().finally(()=> {
+			this.props.getCosts().finally(() => {
+				console.log(this.props);
+				this.setState({loading: false})
+			});
 		});
 	}
 	addCosts(){
@@ -49,6 +53,34 @@ class addExpanseScene extends Component {
 		})
 	}
 
+	renderCosts() {
+		return this.props.costs.costs.allDates.map((data) => {
+			if(this.props.costs.costs.byDates[data].title == (new Date().getDate()+'/'+(new Date().getMonth()+1)+'/'+new Date().getFullYear())) {
+				let title = this.props.costs.costs.byDates[data].title;
+				let cost = this.props.costs.costs.byDates[data].value;
+				let type = false;
+				if (this.props.costs.costs.byDates[data].type == 'small') {
+					type = true;
+					title = this.props.categories.categories.byIds[this.props.costs.costs.byIds[this.props.costs.costs.byDates[data].id].category].title
+				} else {
+					let currDateString = new Date().getDate() + '/' + (new Date().getMonth() + 1) + '/' + new Date().getFullYear();
+					let prevDateString = (new Date().getDate() - 1) + '/' + (new Date().getMonth() + 1) + '/' + new Date().getFullYear();
+					if (title == currDateString) {
+						title = 'Сьогодні';
+					} else if (title == prevDateString) {
+						title = 'Вчора';
+					}
+					cost = this.props.costs.costs.byDatesTitle[this.props.costs.costs.byDates[data].title].price
+				}
+
+
+				return (
+					<CostRow key={`cost-${data}`} text={title} costs={[cost, ' ', this.props.auth.currency]} smallRow={type}></CostRow>
+				)
+			}
+		});
+	}
+
 	render() {
 		return (
 			<View style = { styles.container }>
@@ -71,16 +103,21 @@ class addExpanseScene extends Component {
 							value=""/>
 						<Text style={styles.cyrrencyLabel}>{this.props.auth.currency}</Text>
 					</View>
-
-
 					{this.state.newCost!='' ? <View style= { styles.navigation } >
 						<Button text="Додати" click={this.addCosts.bind(this)}/>
 					</View> : null}
+
+					<View style={styles.subtitle_wrapper}>
+						<Text style={styles.subtitle}>Сьогоднішні витрати:</Text>
+					</View>
+					<View style = { style_module.subtitle_wrapper }>
+						{this.state.loading ? <Loader/> : this.renderCosts()}
+					</View>
 				</ScrollView>
-				<Nav/>
+				<Nav active = {'check'}/>
 			</View>
 		);
 	}
 }
 
-export default connect(({categories, auth})=>{ return {categories, auth}}, { getCategories, addCost, removeCost, makeActive})(addExpanseScene);
+export default connect(({categories, auth, costs})=>{ return {categories, auth, costs}}, { getCategories, addCost, removeCost, makeActive, getCosts})(addExpanseScene);

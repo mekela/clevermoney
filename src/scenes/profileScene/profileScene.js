@@ -9,7 +9,7 @@ import ButtonLink from "../../components/buttonLink";
 import Button from "../../components/button";
 import Nav from "../../components/nav";
 import Icon from "react-native-vector-icons/EvilIcons";
-import {changePassword, uploadImage, signOut, changeAuthData} from "../../actions"
+import {changePassword, uploadImage, signOut, changeAuthData, updateUserBudget} from "../../actions"
 
 import ImagePicker from 'react-native-image-picker';
 import {connect} from "react-redux";
@@ -36,8 +36,10 @@ class App extends Component{
 		this.props.signOut();
 	}
 	changePasswordPress(){
-		console.log(this.props);
 		this.props.changePassword(this.props.auth.currentPassword, this.props.auth.newPassword);
+	}
+	changeBudgetPress(){
+		this.props.updateUserBudget(this.props.auth, this.props.auth.budget);
 	}
 	changeAuthData(field,value){
 		this.props.changeAuthData(field,value);
@@ -72,11 +74,26 @@ class App extends Component{
 					            title="support@clevermoney.com"/>
 
 					<View style={styles.subtitle_wrapper}>
-						<Text style={styles.subtitle}>Замінити пароль</Text>
+						<Text style={styles.subtitle}>Місячний бюджет</Text>
+					</View>
+					<Input
+						autoCapitalize = 'none'
+						placeholder="Місячний бюджет"
+						keyboardType = "numeric"
+						onChangeText={(budget) => this.changeAuthData('budget',budget)}
+						value={this.props.auth.budget}
+					/>
+					<View style= { styles.navigation } >
+						<Button text="Змінити бюджет"  click={this.changeBudgetPress.bind(this)}/>
+					</View>
+
+					<View style={styles.subtitle_wrapper}>
+						<Text style={styles.subtitle}>Змінити пароль</Text>
 					</View>
 					<View style={style_module.form_label_wrapper}>
 						<Text>Старий пароль</Text>
 					</View>
+
 					<Input
 						autoCapitalize = 'none'
 						secureTextEntry = {true}
@@ -102,9 +119,9 @@ class App extends Component{
 					<Button text="Вийти" click={this.logoutButtonPress.bind(this)} ></Button>
 				</ScrollView>
 
-				<Nav/>
+				<Nav active = {'user'}/>
 			</View>
 		);
 	}
 }
-export default connect(({auth})=>{ return {auth}}, { signOut, changePassword, changeAuthData})(App);
+export default connect(({auth})=>{ return {auth}}, { signOut, changePassword, changeAuthData, updateUserBudget})(App);

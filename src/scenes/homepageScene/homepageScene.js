@@ -22,31 +22,15 @@ class homepageScene extends Component{
 	componentWillMount() {
 		this.setState({loading:true})
 		this.props.getCategories().finally(()=> {
-			this.props.getCosts(10).finally(() => {
+			this.props.getCosts().finally(() => {
 				console.log(this.props);
 				this.setState({loading: false})
 			});
 		});
 	}
 
-	renderCosts2() {
-		return this.props.costs.costs.allIds.map((data) => {
-			let myDate = new Date(this.props.costs.costs.byIds[data].timestamp);
-			let myDateString = myDate.getDate()+'/'+(myDate.getMonth()+1)+'/'+myDate.getFullYear() +' '+ myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds() ;
-			return (
-				<CostRow key={`cost-${data}`} text={[
-					this.props.categories.categories.byIds[this.props.costs.costs.byIds[data].category].title,
-					' ',
-					myDateString,
-					' ',
-
-				]} costs={this.props.costs.costs.byIds[data].price} smallRow={true}></CostRow>
-			)
-		})
-	}
-
 	renderCosts() {
-		return this.props.costs.costs.allDates.map((data) => {
+		return this.props.costs.costs.allDates.slice(0, 10).map((data) => {
 			let title = this.props.costs.costs.byDates[data].title;
 			let cost = this.props.costs.costs.byDates[data].value;
 			let type = false;
@@ -77,20 +61,17 @@ class homepageScene extends Component{
 				<ScrollView style= { [styles.content, styles.topInner] } >
 					<View style = { style_module.monthly_budget_wrapper }>
 						<Text style = { style_module.monthly_budget_text }>Місячний бюджет</Text>
-						<Text style = { style_module.monthly_budget_cost }> 5750.00 грн.</Text>
+						{this.state.loading ? <Loader/> :
+							<Text style = { style_module.monthly_budget_cost }> {parseInt(this.props.auth.budget) - parseInt(this.props.costs.costs.monthBudget)} {this.props.auth.currency}</Text>
+						}
 					</View>
 					<View style = { style_module.costs_wrapper }>
 						{this.state.loading ? <Loader/> : this.renderCosts()}
-						{/*<CostRow text={'Сьогодні'} costs={'300.00 грн'}></CostRow>*/}
-						{/*<CostRow text={'Авто'} costs={'34530.00 грн'} smallRow={true}></CostRow>*/}
-						{/*<CostRow text={'Продукти'} costs={'300.00 грн'} smallRow={true}></CostRow>*/}
-						{/*<CostRow text={'Авто'} costs={'30.00 грн'} smallRow={true}></CostRow>*/}
-						{/*<CostRow text={'Аптека'} costs={'100.50 грн'} smallRow={true}></CostRow>*/}
-						{/*<CostRow text={'Вчора'} costs={'300.00 грн'}></CostRow>*/}
-						{/*<CostRow text={'Авто'} costs={'34530.00 грн'} smallRow={true}></CostRow>*/}
-						{/*<CostRow text={'Продукти'} costs={'300.00 грн'} smallRow={true}></CostRow>*/}
-						{/*<CostRow text={'Авто'} costs={'30.00 грн'} smallRow={true}></CostRow>*/}
-						{/*<CostRow text={'Аптека'} costs={'100.50 грн'} smallRow={true}></CostRow>*/}
+					</View>
+					<View style = { style_module.show_all_costs }>
+						<TouchableOpacity onPress = {Actions.statisticExpensesScene}>
+							<Text style = { style_module.show_all_costs_text}>Показати всі витрати</Text>
+						</TouchableOpacity>
 					</View>
 				</ScrollView>
 				<View style={styles.add_cost_icon} >

@@ -1,10 +1,10 @@
 import firebase from "../config/firebase";
 import {costsTypes} from '../reducers/types';
 
-export const getCosts = (limit = 10) => (dispatch) => {
+export const getCosts = () => (dispatch) => {
 
 	const curUser = firebase.auth().currentUser;
-	var recentPostsRef = firebase.database().ref(`users/${curUser.uid}/costs`).orderByChild('timestampOrder').limitToFirst(limit);
+	var recentPostsRef = firebase.database().ref(`users/${curUser.uid}/costs`).orderByChild('timestampOrder');
 	return recentPostsRef.once('value').then(snapshot => {
 		const costs = [];
 
@@ -14,8 +14,6 @@ export const getCosts = (limit = 10) => (dispatch) => {
 				...item.val()
 			});
 		});
-
-		console.log('costs',costs);
 
 		dispatch({type: costsTypes.listCosts, payload: costs});
 	}).finally(()=>{

@@ -47,6 +47,14 @@ const module_style = StyleSheet.create({
 		color: '#4de1d3',
 		fontWeight: 'bold',
 		fontSize: 32
+	},
+	show_all_costs:{
+		paddingTop:10,
+	},
+	show_all_costs_text:{
+		textAlign: 'center',
+		color: '#4de1d3',
+		fontSize: 16
 	}
 });
 

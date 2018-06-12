@@ -35,10 +35,21 @@ const module_style = StyleSheet.create({
 		//width:                    SCREEN_WIDTH * 0.5 - (MARGIN_LARGE * 2),
 
 	},
+	selectTitleWrapper:{
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	selectTitleContent:{
+		color: '#fff',
+		fontSize: 18,
+		paddingTop: 15,
+		paddingBottom: 10
+	},
 	selectWrapper:{
 		flexDirection: 'row',
-		justifyContent: 'flex-end',
+		justifyContent: 'center',
 		alignItems: 'center',
+		paddingBottom: 20
 	}
 });
 

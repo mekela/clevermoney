@@ -215,9 +215,9 @@ const styles = StyleSheet.create({
 	},
 	tabItem: {
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		paddingHorizontal:3
 	},
-
 	tabTitle: {
 		fontSize: 11,
 		color: '#b7b7b7'
@@ -226,9 +226,9 @@ const styles = StyleSheet.create({
 		color: '#3c3c3c'
 	},
 	subtitle_wrapper:{
-		paddingTop: 26,
-		paddingBottom: 20,
-		paddingHorizontal: 30,
+		paddingTop: 16,
+		paddingBottom: 10,
+		paddingHorizontal: 16,
 	},
 	cyrrencyLabel:{
 		position: 'absolute',
@@ -249,8 +249,10 @@ const styles = StyleSheet.create({
 		paddingVertical: 10,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		backgroundColor: '#cff7ff',
 		width
+	},
+	list_link_wrapper_cost:{
+		backgroundColor: '#cff7ff',
 	},
 	list_link_wrapper_small:{
 		backgroundColor: '#fff',

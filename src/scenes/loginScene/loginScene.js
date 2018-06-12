@@ -67,8 +67,14 @@ class App extends Component{
 					value={this.props.auth.password}
 				/>
 				<Button text="Увійти" click={this.loginButtonPress.bind(this)} />
-				<Button text="Facebook" click={this.loginButtonPress.bind(this)} />
-				<FBLoginButton />
+				{/*<Button text="Facebook" click={this.loginButtonPress.bind(this)} />*/}
+				{/*<FBLoginButton />*/}
+				<View style={style_module.socialLoginWrapper}>
+					<Text>або увійти через</Text>
+					<TouchableOpacity onPress = {Actions.addExpensesScene}>
+						<Icon name="sc-facebook" size={35} color="#3b5998"></Icon>
+					</TouchableOpacity>
+				</View>
 			</View>
 		)
 	}

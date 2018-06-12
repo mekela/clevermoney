@@ -9,11 +9,18 @@ const NormalizeCostsList = (state, costs) => {
 	let finishAllhDates = [];
 	let price = 0;
 	let i = 0;
+	let monthBudget = 0;
 	costs.map((data) => {
 		let myDate = new Date(data.timestamp);
+		let currDate = new Date();
 		let myDateString = myDate.getDate()+'/'+(myDate.getMonth()+1)+'/'+myDate.getFullYear() ;
 		let key = myDateString;
 		let value = data.price;
+
+
+		if(((myDate.getMonth()+1)+'/'+myDate.getFullYear()) == ((currDate.getMonth()+1)+'/'+currDate.getFullYear())){
+			monthBudget = monthBudget + parseInt(data.price);
+		}
 
 		if(key in titleArray){
 			price = price + parseInt(value);
@@ -42,9 +49,6 @@ const NormalizeCostsList = (state, costs) => {
 		titleArray[key] = {price, date: dataArray}
 	});
 
-	console.log(finishDates);
-
-
 	const NormalizeCosts = {
 		byIds: costs.reduce((prev, current) => {
 			prev[current.id] = current;
@@ -53,6 +57,7 @@ const NormalizeCostsList = (state, costs) => {
 		byDates: finishDates,
 		byDatesTitle: titleArray,
 		allDates: finishAllhDates,
+		monthBudget,
 		allIds: costs.map(current => current.id)
 	};
 

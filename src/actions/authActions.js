@@ -125,6 +125,24 @@ export const updateUser = ({name, email, phone}) => (dispatch) => {
 	});
 
 }
+
+export const updateUserBudget = (user, budget) => (dispatch) => {
+
+	if (!budget) {
+		return Promise.reject('enter the budget')
+	}
+
+	const curUser = firebase.auth().currentUser;
+	const ref = firebase.database().ref(`users/${curUser.uid}`);
+	ref.set({
+		...user, budget
+	});
+	ref.on('value', function (snapshot) {
+		dispatch({type: 'auth_user_receive', payload: snapshot.val()});
+		Toaster.showMessage("Бюджет успішно оновлено");
+		Actions.profileScene();
+	});
+}
 export const updateUserDetail = (user, currency) => (dispatch) => {
 
 	const curUser = firebase.auth().currentUser;

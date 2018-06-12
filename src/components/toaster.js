@@ -42,7 +42,7 @@ export const ToasterView = (props) =>{
 	console.log(props.message);
 	return <View style={{position:'absolute', width: '100%',paddingTop:20}}>
 
-			{props.message.map(message => <View style={{backgroundColor:'rgba(255,0,0,0.8)',marginTop:2, paddingVertical: 10, width: '100%', paddingHorizontal: 5}}><Text>{message}</Text></View>)}
+			{props.message.map(message => <View key={`toaster-${message}`} style={{backgroundColor:'rgba(77,225,211,0.8)',marginTop:2, paddingVertical: 10, width: '100%', paddingHorizontal: 5}}><Text>{message}</Text></View>)}
 			{/*<Text>{props.messages}</Text>*/}
 
 	</View>

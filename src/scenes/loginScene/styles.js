@@ -27,6 +27,11 @@ const module_style = StyleSheet.create({
 	},
 	inputForm:{
 		//height: 60
+	},
+	socialLoginWrapper:{
+		paddingTop: 5,
+		justifyContent: 'center',
+		alignItems: 'center'
 	}
 });
 
