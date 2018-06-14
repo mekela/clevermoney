@@ -7,8 +7,9 @@ import styles from "../../themes/styles";
 import Input from "../../components/input";
 import Button from "../../components/button";
 import style_module from "./styles";
-import {signUp} from "../../actions"
+import {signUp, signIn, changeAuthData, signOut} from "../../actions"
 import Loader from "../../components/loader";
+import {connect} from "react-redux";
 
 class App extends Component{
 	constructor(){
@@ -21,9 +22,12 @@ class App extends Component{
 	}
 	signUpButtonPress() {
 		this.setState({loading: true});
-
-		signUp(this.state)
-			.then(Actions.wizardScene)
+		let authParams = {
+			email: this.state.email,
+			password: this.state.password,
+		}
+		this.props.signUp(this.state)
+			.then(Actions.wizardScene({authParams}))
 			.catch(error => {
 				alert(error)
 			})
@@ -90,4 +94,4 @@ class App extends Component{
 	}
 }
 
-export default App;
+export default connect(({auth})=>{ return {auth}}, { signIn, signUp, changeAuthData, signOut })(App);

@@ -9,25 +9,32 @@ import ButtonLink from "../../components/buttonLink";
 import Button from "../../components/button";
 import Nav from "../../components/nav";
 import Icon from "react-native-vector-icons/EvilIcons";
-import {changePassword, uploadImage, signOut, changeAuthData, updateUserBudget} from "../../actions"
+import {changePassword, uploadImage, signOut, changeAuthData, updateUserBudget, updateUserSetting} from "../../actions"
 
 import ImagePicker from 'react-native-image-picker';
 import {connect} from "react-redux";
 
 class App extends Component{
-	constructor(){
+	constructor(props){
+		console.log(props);
 		super();
-		this.state = {url : require('../../../assets/cat.jpg')}
+		this.state = {
+			url : props.auth.avatar? {uri: props.auth.avatar}: require('../../../assets/cat.jpg'),
+			budget: props.auth.budget,
+			showUpdateAvatarButton: false,
+			loadingAvatar: false
+		}
 	}
 	componentWillMount(){
-
+		//console.log(this.props);
 	}
 
 	selectImageButtonPress(){
 		ImagePicker.showImagePicker({}, (response) => {
 			uploadImage(response, response.fileName).then((link)=>{
 				this.setState({
-					url:{url:link}
+					url:{url:link},
+					showUpdateAvatarButton: true
 				});
 			})
 		});
@@ -41,16 +48,24 @@ class App extends Component{
 	changeBudgetPress(){
 		this.props.updateUserBudget(this.props.auth, this.props.auth.budget);
 	}
+	saveAvatarPress(){
+		this.props.updateUserSetting(this.props.auth, 'avatar', this.state.url.url, 'Аватар успішно оновлено');
+	}
 	changeAuthData(field,value){
 		this.props.changeAuthData(field,value);
 	}
 
+	renderAvatarSection(){
+
+	}
+
 	render(){
 		return (
-			<View style = { styles.container }>
+			<View style = { [styles.container] }>
 
 				<ScrollView style= { [styles.content, styles.topInner] } >
 					<View style={style_module.profileImageWrapper}>
+
 						<Image  style={style_module.profileImage}
 						       source={this.state.url}
 						/>
@@ -59,6 +74,11 @@ class App extends Component{
 						>
 							<Icon name='pencil' size={25} color={'#2c3e50'}  style={style_module.editProfileImageIcon}></Icon>
 						</TouchableOpacity>
+					</View>
+					<View>
+						{this.state.showUpdateAvatarButton?
+						<Button text="Оновити аватар" click={this.saveAvatarPress.bind(this)} ></Button>
+						: null}
 					</View>
 
 					{/*<View style={style_module.strong_text_wrapper}>*/}
@@ -81,7 +101,7 @@ class App extends Component{
 						placeholder="Місячний бюджет"
 						keyboardType = "numeric"
 						onChangeText={(budget) => this.changeAuthData('budget',budget)}
-						value={this.props.auth.budget}
+						value={this.state.budget.toString()}
 					/>
 					<View style= { styles.navigation } >
 						<Button text="Змінити бюджет"  click={this.changeBudgetPress.bind(this)}/>
@@ -124,4 +144,4 @@ class App extends Component{
 		);
 	}
 }
-export default connect(({auth})=>{ return {auth}}, { signOut, changePassword, changeAuthData, updateUserBudget})(App);
+export default connect(({auth})=>{ return {auth}}, { signOut, changePassword, changeAuthData, updateUserBudget, updateUserSetting})(App);

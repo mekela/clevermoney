@@ -10,7 +10,7 @@ export const signIn = ({email, password}) => (dispatch) => {
 	if (password == "") {
 		return Promise.reject('enter password')
 	}
-
+	console.log(email, password);
 	return firebase.auth()
 		.signInWithEmailAndPassword(email, password).then(() => {
 			const curUser = firebase.auth().currentUser;
@@ -34,7 +34,7 @@ export const signOut = () => (dispatch) => {
 };
 
 
-export const signUp = ({name, email, password}) => {
+export const signUp = ({name, email, password})  => (dispatch) => {
 
 	if (email == "") {
 		return Promise.reject('enter email')
@@ -56,8 +56,14 @@ export const signUp = ({name, email, password}) => {
 					firebase.database().ref(`users/${curUser.uid}`)
 						.set({
 							name,
-							email
+							email,
+							currency: 'UAH',
+							budget: 8000,
 						});
+
+					firebase.database().ref(`/users/${curUser.uid}/categories`).push({ title:'Авто' });
+					firebase.database().ref(`/users/${curUser.uid}/categories`).push({ title:'Розваги' });
+					firebase.database().ref(`/users/${curUser.uid}/categories`).push({ title:'Сім\'я' });
 				});
 		}).catch(error => {
 			return Promise.reject(error);
@@ -143,17 +149,22 @@ export const updateUserBudget = (user, budget) => (dispatch) => {
 		Actions.profileScene();
 	});
 }
-export const updateUserDetail = (user, currency) => (dispatch) => {
+
+export const updateUserSetting = (user, setting, value, message = '') => (dispatch) => {
+
+	if (!value) {
+		return Promise.reject('enter the value')
+	}
 
 	const curUser = firebase.auth().currentUser;
 	const ref = firebase.database().ref(`users/${curUser.uid}`);
 	ref.set({
-		...user, currency
+		...user, [setting]: value
 	});
 	ref.on('value', function (snapshot) {
 		dispatch({type: 'auth_user_receive', payload: snapshot.val()});
 		Actions.profileScene();
-		Toaster.showMessage("Валюта успішно оновлена");
+		if(message!='') Toaster.showMessage(message);
 	});
 }
 export const updateUserDetailNotifications = ({notification}) => (dispatch) => {

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { Actions } from 'react-native-router-flux';
 import module_style from "../../scenes/wizardScene/styles";
 import {Text, View} from "react-native";
+import {signIn, changeAuthData, signOut} from "../../actions"
+import {connect} from 'react-redux';
 //import Button from "../../components/button";
 
 const slides = [
@@ -32,7 +34,7 @@ const slides = [
 	}
 ];
 
-export default class App extends React.Component {
+class App extends Component{
 	_onDone = () => {
 		// User finished the introduction. Show "real" app
 	}
@@ -46,9 +48,20 @@ export default class App extends React.Component {
 	_renderDoneButton = () => {
 		return (
 			<View>
-				<Text onPress={Actions.homepageScene} >Закінчити</Text>
+				<Text onPress={this.finishSlide.bind(this)} >Закінчити</Text>
 			</View>
 		);
+	}
+	finishSlide(){
+		this.props.signIn(this.props.authParams)
+			.then(Actions.homepageScene)
+			.catch(error=>{alert(error)})
+			.finally(() => {
+				this.setState({loading: false})
+			});
+	}
+	componentWillMount(){
+
 	}
 	render() {
 		return (
@@ -65,3 +78,5 @@ export default class App extends React.Component {
 	//
 	// }
 }
+
+export default connect(({auth})=>{ return {auth}}, { signIn, changeAuthData, signOut })(App);
