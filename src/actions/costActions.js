@@ -22,18 +22,18 @@ export const getCosts = () => (dispatch) => {
 
 };
 
-export const addCost = ({ price, category }) => (dispatch) => {
+export const addCost = ({ price, category, date }) => (dispatch) => {
 	if (price == "") {
 		return Promise.reject('Please enter the price')
 	}
 	if (!category) {
 		return Promise.reject('Please set the category')
 	}
-	console.log(price, category);
+	console.log(price, category, date);
 	const { currentUser } = firebase.auth();
 	//var currentTime = new Date().toString();
 	return	firebase.database().ref(`/users/${currentUser.uid}/costs`)
-		.push({ price, category, timestampOrder: (new Date().getTime()*-1) , timestamp: new Date().getTime() })
+		.push({ price, category, timestampOrder: (new Date(date).getTime()*-1) , timestamp: new Date(date).getTime() })
 		.then((snapshot) => {
 
 			dispatch({ type: costsTypes.itemAdd, payload: {key: snapshot.key, price, category} });

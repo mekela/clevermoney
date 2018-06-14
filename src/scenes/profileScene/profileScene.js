@@ -19,7 +19,7 @@ class App extends Component{
 		console.log(props);
 		super();
 		this.state = {
-			url : props.auth.avatar? {uri: props.auth.avatar}: require('../../../assets/cat.jpg'),
+			url : props.auth.avatar? {uri: props.auth.avatar}: require('../../../assets/user-icon.png'),
 			budget: props.auth.budget,
 			showUpdateAvatarButton: false,
 			loadingAvatar: false
@@ -81,9 +81,9 @@ class App extends Component{
 						: null}
 					</View>
 
-					{/*<View style={style_module.strong_text_wrapper}>*/}
-						{/*<Text style={style_module.strong_text}>Ім'я: </Text> <Text>{this.props.auth.name}</Text>*/}
-					{/*</View>*/}
+					<View style={style_module.strong_text_wrapper}>
+						<Text style={style_module.strong_text}>Ім'я: </Text> <Text>{this.props.auth.name}</Text>
+					</View>
 					<View style={style_module.strong_text_wrapper}>
 						<Text style={style_module.strong_text}>Email: </Text> <Text>{this.props.auth.email}</Text>
 					</View>

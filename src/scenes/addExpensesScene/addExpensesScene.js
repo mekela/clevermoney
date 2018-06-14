@@ -12,13 +12,16 @@ import {getCategories, addCost, removeCost, makeActive, getCosts} from "../../ac
 import {connect} from "react-redux";
 import Toaster from "../../components/toaster";
 import CostRow from "../../components/costRow";
+import DatePicker from "react-native-datepicker";
 
 class addExpanseScene extends Component {
 	constructor(){
+		let curDate = new Date();
 		super()
 		this.state={
 			loading: false,
-			newCost: ''
+			newCost: '',
+			date: curDate.getFullYear()+'-'+(curDate.getMonth() + 1)+'-'+curDate.getDate()+' '+curDate.getHours()+':'+curDate.getMinutes()+':'+curDate.getSeconds()
 		}
 	}
 	componentWillMount() {
@@ -31,7 +34,7 @@ class addExpanseScene extends Component {
 		});
 	}
 	addCosts(){
-		this.props.addCost({price: this.state.newCost, category: this.props.categories.categories.current})
+		this.props.addCost({price: this.state.newCost, category: this.props.categories.categories.current, date: this.state.date})
 			.then(()=>{
 				Toaster.showMessage('Витрати додані');
 			})
@@ -90,6 +93,34 @@ class addExpanseScene extends Component {
 					</View>
 					<View style= { styles.expenseItemWrapper } >
 						{this.state.loading ? <Loader/> : this.renderCategories()}
+					</View>
+					<View style= { styles.titleWrapper }>
+						<Text style={style_module.addExpensesSubTitle} >Виберіть дату та час:</Text>
+					</View>
+					<View style= { styles.expenseItemWrapper } >
+						<DatePicker
+							style={{width: 200}}
+							date={this.state.date}
+							mode="datetime"
+							placeholder="select date"
+							format="YYYY-MM-DD HH:mm"
+							// minDate="2016-05-01"
+							maxDate={this.state.date}
+							confirmBtnText="Confirm"
+							cancelBtnText="Cancel"
+							is24Hour={true}
+							customStyles={{
+								dateIcon: {
+									position: 'absolute',
+									right: 0,
+									top: 4,
+									marginRight: 0
+								},
+								dateInput: styles.inputWrapper
+								// ... You can check the source to find the other keys.
+							}}
+							onDateChange={(date) => {this.setState({date: date})}}
+						/>
 					</View>
 					<View style={styles.subtitle_wrapper}>
 						<Text style={styles.subtitle}>Додати витрати:</Text>
