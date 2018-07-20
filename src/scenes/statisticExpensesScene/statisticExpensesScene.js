@@ -10,22 +10,28 @@ import Loader from "../../components/loader";
 import CostRow from "../../components/costRow";
 import {connect} from "react-redux";
 import {getCategories, getCosts} from "../../actions";
+import ExpenseItem from "../../components/expenseItem";
 
 class App extends Component{
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			valueSmall0: 0,
+			filterType: 0,
+			activeFilter: 'expense-days-30',
+			activeFilterType: 'days',
+			activeFilterParam: 30,
 			valueSmall1: 1,
 			valueLarge:  2,
 			loading: false,
+			filterDaysData:[30, 60, 90, 180]
 		};
 	}
 	onSubmitEditingSmall0(value) {
 		this.setState({
-			valueSmall0: value,
+			filterType: value,
 		});
+		console.log('Select', value);
 	}
 
 	getPickerOptions() {
@@ -45,10 +51,104 @@ class App extends Component{
 		});
 	}
 
+	timeDifference(current, previous) {
+		var msPerMinute = 60 * 1000;
+		var msPerHour = msPerMinute * 60;
+		var msPerDay = msPerHour * 24;
+		var elapsed = current - previous;
+		if (elapsed < msPerMinute) {
+			return Math.round(elapsed/1000) + ' seconds ago';
+		}
+		return Math.round(elapsed/msPerDay);
+	}
+
+	makeActive(newFilter, newType, newParam){
+		this.setState({ activeFilter: newFilter });
+		this.setState({ activeFilterType: newType });
+		this.setState({ activeFilterParam: newParam });
+	}
+	Filter(filter) {
+		if(filter == 0){
+			const filterList = this.state.filterDaysData.map((data) => {
+				return (
+					<ExpenseItem key={`expense-days-${data}`} changeActive = {true} activeItem = {this.state.activeFilter == `expense-days-${data}`} clickActive = {this.makeActive.bind(this, `expense-days-${data}`, 'days', data)}>Останні {`${data}`} днів</ExpenseItem>
+				)
+			})
+
+			return (
+				<ScrollView style={[ style_module.monthWrapper]}>
+					<View style= { styles.expenseItemWrapper } >
+						{filterList}
+					</View>
+				</ScrollView>
+			);
+		}else if(filter == 1){
+			let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+			let filterMonthsData = [];
+			let today = new Date();
+			let year = today.getFullYear();
+			let month = today.getMonth();
+
+			let i = 0;
+			do {
+				filterMonthsData.push(monthNames[month] + " " + year);
+				if (month == 0) {
+					month = 11;
+					year--;
+				} else {
+					month--;
+				}
+
+				i++;
+			} while (i < 60);
+			const filterList = filterMonthsData.map((data) => {
+				return (
+					<ExpenseItem key={`expense-months-${data}`} changeActive = {true} activeItem = {this.state.activeFilter == `expense-months-${data}`} clickActive = {this.makeActive.bind(this, `expense-months-${data}`,'months', data)}>{`${data}`}</ExpenseItem>
+				)
+			})
+
+			return (
+				<ScrollView style={[ style_module.monthWrapper]}>
+					<View style= { styles.expenseItemWrapper } >
+						{filterList}
+					</View>
+				</ScrollView>
+
+			);
+		}else if(filter == 2){
+			let filterYearData = [];
+			let today = new Date();
+			let year = today.getFullYear();
+
+			let i = 0;
+			do {
+				filterYearData.push(year);
+				year--;
+				i++;
+			} while (i < 5);
+			const filterList = filterYearData.map((data) => {
+				return (
+					<ExpenseItem key={`expense-year-${data}`} changeActive = {true} activeItem = {this.state.activeFilter == `expense-year-${data}`} clickActive = {this.makeActive.bind(this, `expense-year-${data}`,'years', data)}>{`${data}`}</ExpenseItem>
+				)
+			})
+			return (
+
+				<ScrollView style={[ style_module.monthWrapper]}>
+					<View style= { styles.expenseItemWrapper } >
+						{filterList}
+					</View>
+				</ScrollView>
+
+			);
+		}
+	}
+
 	renderCosts() {
-		return this.props.costs.costs.allDates.slice(0, 10).map((data) => {
+		return this.props.costs.costs.allDates.map((data) => {
+
 			let title = this.props.costs.costs.byDates[data].title;
 			let cost = this.props.costs.costs.byDates[data].value;
+
 			let type = false;
 			if(this.props.costs.costs.byDates[data].type == 'small'){
 				type = true;
@@ -64,12 +164,37 @@ class App extends Component{
 				cost = this.props.costs.costs.byDatesTitle[this.props.costs.costs.byDates[data].title].price
 			}
 
+			if(this.state.activeFilterType == 'days'){
+				let date = new Date();
+				date.setDate(date.getDate());
+				if (this.timeDifference(+ date, this.props.costs.costs.byDates[data].timestamp) <= this.state.activeFilterParam){
+					return (
+						<CostRow key={`cost-${data}`} text={title} costs={[cost,' ',this.props.auth.currency]} smallRow={type}></CostRow>
+					)
+				}
+			}else if(this.state.activeFilterType == 'months'){
+				let month_title = (new Date(this.state.activeFilterParam).getMonth()+'/'+new Date(this.state.activeFilterParam).getFullYear());
+				let current_month_title = (new Date(this.props.costs.costs.byDates[data].timestamp).getMonth()+'/'+new Date(this.props.costs.costs.byDates[data].timestamp).getFullYear());
+				if(month_title == current_month_title){
+					return (
+						<CostRow key={`cost-${data}`} text={title} costs={[cost,' ',this.props.auth.currency]} smallRow={type}></CostRow>
+					)
+				}
+			}else if(this.state.activeFilterType == 'years'){
+				let year_title = this.state.activeFilterParam;
+				let current_year_title = new Date(this.props.costs.costs.byDates[data].timestamp).getFullYear();
 
-			return (
-				<CostRow key={`cost-${data}`} text={title} costs={[cost,' ',this.props.auth.currency]} smallRow={type}></CostRow>
-			)
+				if(year_title == current_year_title){
+					return (
+						<CostRow key={`cost-${data}`} text={title} costs={[cost,' ',this.props.auth.currency]} smallRow={type}></CostRow>
+					)
+				}
+			}
+
+
 		});
 	}
+
 
 	render() {
 		let state = this.state;
@@ -78,11 +203,11 @@ class App extends Component{
 			<View style = { [styles.container] }>
 				<ScrollView style= { [styles.content] } >
 					<View style={[style_module.containerBackground, style_module.selectTitleWrapper]}>
-						<Text  style={style_module.selectTitleContent}>Фільтрувати</Text>
+						<Text style={style_module.selectTitleContent}>Фільтрувати</Text>
 					</View>
 					<View style={[style_module.containerBackground, style_module.selectWrapper]}>
 						<SelectInput
-							value={state.valueSmall0}
+							value={state.filterType}
 							options={this.getPickerOptions()}
 							onCancelEditing={() => console.log('onCancel')}
 							onSubmitEditing={this.onSubmitEditingSmall0.bind(this)}
@@ -92,21 +217,8 @@ class App extends Component{
 						<Icon name='chevron-down' size={25} color="#3c3c3c"></Icon>
 					</View>
 
-					{/*<View style= { [styles.content, style_module.containerBackground] } >*/}
+					{  this.Filter(state.filterType) }
 
-						{/*<Text style={ [styles.bigTitle, style_module.bigTitle] }> Квітень, 1 </Text>*/}
-						{/*<View*/}
-							{/*style={{*/}
-								{/*borderBottomColor: '#abe5e1',*/}
-								{/*borderBottomWidth: 1,*/}
-								{/*marginTop: 25,*/}
-								{/*marginBottom: 25,*/}
-								{/*marginLeft: 45,*/}
-								{/*marginRight: 45,*/}
-							{/*}}*/}
-						{/*/>*/}
-
-					{/*</View>*/}
 					<View style = { style_module.costs_wrapper }>
 						{this.state.loading ? <Loader/> : this.renderCosts()}
 					</View>

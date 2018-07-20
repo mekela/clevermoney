@@ -7,7 +7,7 @@ const MARGIN_LARGE = 16;
 const module_style = StyleSheet.create({
 	containerBackground: {
 		backgroundColor: '#53cac4',
-		width: '100%',
+		width: '100%'
 	},
 	bigTitle:{
 		textAlign:'center',
@@ -50,6 +50,14 @@ const module_style = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		paddingBottom: 20
+	},
+	monthWrapper:{
+		paddingTop: 10,
+		paddingBottom: 0,
+	},
+	monthTitle:{
+		color: '#fff',
+		marginRight: 10
 	}
 });
 

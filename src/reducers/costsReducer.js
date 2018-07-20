@@ -32,6 +32,7 @@ const NormalizeCostsList = (state, costs) => {
 			finishDates[i] = {
 				title: key,
 				value,
+				timestamp: data.timestamp,
 				type: 'big'
 			};
 			finishAllhDates.push(i);
@@ -41,6 +42,7 @@ const NormalizeCostsList = (state, costs) => {
 		finishDates[i] = {
 			title: key,
 			value,
+			timestamp: data.timestamp,
 			type: 'small',
 			id: data.id
 		};
